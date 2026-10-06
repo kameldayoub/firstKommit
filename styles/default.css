@@ -1,0 +1,14 @@
+:root {
+  --color-prima-rio: #00adb5;
+  --color-secundario: #393e46;
+  --color-fondo: #222831;
+  --color-texto: #eeeeee;
+  --color-exito: #28a745;
+}
+
+.header {
+  background-color: #2F4736;
+  color: #EEE5D3;
+  padding: 40px 20px 20px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
