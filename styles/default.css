@@ -16,14 +16,18 @@ a{
 
 }
 
+
 .icono{
   width: 70%;
 }
-.buzon{
-  margin-top: -1%;
-}
 .mensaje{
-  margin-bottom: -10%;
+  margin-top: 5%;
+}
+.perfil{
+  margin-top: -7px;
+  border: 5px solid var(--blanco);
+  height: 50px;
+  width: 50px;
 }
 
 .header-info{
@@ -31,10 +35,11 @@ a{
   flex-wrap: wrap;
 }
 
-.header-info a{
-
-}
 .carrusel{
+  
+  display: flex;
+  flex-wrap: center;
+  
   background-color: var(--blanco);
   height: 350px;
 
@@ -43,6 +48,23 @@ a{
   margin: 0 13% 0 13%;
 }
 
+.carrusel-side{
+  background-color: var(--verde);
+  border-radius: 20px;
+  width: 30%;
+  height: fill-available;
+  padding: 0;
+  margin: 5%;
+}
+
+.carrusel-center{
+  background-color: var(--verde);
+  border-radius: 20px;
+  width: 30%;
+  height: fill-available;
+  padding: 0;
+  margin: 2% 5% 2% 5%;
+}
 .pasan-titulo{
   background-color: var(--bordo);
   margin: 0;
@@ -86,11 +108,11 @@ a{
   background-color: var(--blanco);
 
   border-radius: 20px 0px 0px 20px; 
-  height: 70%;
-  
+  height: fill-available;
+  width: fill-available;
+
   padding: 2%;
   margin: 2%;
-
 }
 
 .pasan-view article{
