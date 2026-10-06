@@ -1,9 +1,9 @@
 :root {
-  --color-prima-rio: #00adb5;
-  --color-secundario: #393e46;
-  --color-fondo: #222831;
-  --color-texto: #eeeeee;
-  --color-exito: #28a745;
+  --verde: #2F4736;
+  --bordo: #393e46;
+  --blanco: #222831;
+  --marron: #eeeeee;
+  --negro: #28a745;
 }
 
 .header {
