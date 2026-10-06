@@ -5,8 +5,18 @@
   --marron: #3E2F29;
 }
 
-.header {
+header {
   background-color: var(--verde);
   color: var(--blanco);
-  
+
+}
+
+main {
+  background-color: var(--marron);
+  color: var(--blaco);
+}
+
+footer {
+  background-color: var(--bordo);
+  color: var(--blanco);
 }
