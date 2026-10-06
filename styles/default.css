@@ -10,8 +10,56 @@ body {
 
 a{
   color: var(--blanco);
+  
+  width: fit-content;
+  height: fit-content;
 
 }
+
+.icono{
+  width: 70%;
+}
+.buzon{
+  margin-top: -1%;
+}
+.mensaje{
+  margin-bottom: -10%;
+}
+
+.header-info{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header-info a{
+
+}
+.carrusel{
+  background-color: var(--blanco);
+  height: 350px;
+
+  border-radius:  0px 0px 50px 50px;
+  padding: 0;
+  margin: 0 13% 0 13%;
+}
+
+.pasan-titulo{
+  background-color: var(--bordo);
+  margin: 0;
+  color: var(--blanco);
+  padding: 2% 0 2% 0;
+  margin: 0 0 -1% 0;
+}
+.pasan-titulo h1{
+  padding: 0 13% 0 13%;
+  margin: 0;
+}
+
+.pasan-titulo img{
+  width: 60%;
+}
+
+
 
 
 .pasan-view{
@@ -30,6 +78,7 @@ a{
   
   margin-bottom: 2%;
 }
+
 
 .pasan-view img{
   
@@ -98,6 +147,7 @@ header {
 
 
   height: 120px;
+  padding-top: 3%;
   padding-left: 10%;
   padding-right: 10%;
   margin: 0 auto;
