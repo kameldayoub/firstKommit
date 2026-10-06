@@ -1,0 +1,14 @@
+:root {
+  --verde: #2F4736;
+  --bordo: #393e46;
+  --blanco: #222831;
+  --marron: #eeeeee;
+  --negro: #28a745;
+}
+
+.header {
+  background-color: #2F4736;
+  color: #EEE5D3;
+  padding: 40px 20px 20px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
