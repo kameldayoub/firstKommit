@@ -1,0 +1,136 @@
+
+
+:root {
+  --verde: #2F4736;
+  --bordo: #51202C;
+  --blanco: #EEE5D3;
+  --marron: #3E2F29;
+  --negro: #222323;
+}
+
+.carrusel{
+  
+  display: flex;
+  flex-wrap: center;
+  
+  background-color: var(--blanco);
+  height: 350px;
+
+  border-radius:  0px 0px 50px 50px;
+  padding: 0;
+  margin: 0 13% 0 13%;
+}
+
+.carrusel-side{
+  background-color: var(--verde);
+  border-radius: 20px;
+  width: 30%;
+  height: fill-available;
+  padding: 0;
+  margin: 5%;
+}
+
+.carrusel-center{
+  background-color: var(--verde);
+  border-radius: 20px;
+  width: 30%;
+  height: fill-available;
+  padding: 0;
+  margin: 2% 5% 2% 5%;
+}
+
+.pasan-titulo{
+  background-color: var(--bordo);
+  margin: 0;
+  color: var(--blanco);
+  padding: 2% 0 2% 0;
+  margin: 0 0 -1% 0;
+}
+.pasan-titulo h1{
+  padding: 0 13% 0 13%;
+  margin: 0;
+  
+}
+
+.pasan-titulo img{
+  width: 60%;
+}
+
+
+
+
+.pasan-view{
+  
+  height: 220px;
+  display: flex;
+  flex-wrap: center;
+  justify-content: space-between;
+
+  border: 0;
+  text-decoration: none;
+  color: var(--marron);
+
+  margin-left: 16%;
+  margin-right: 16%;
+  
+  margin-bottom: 2%;
+  transition: transform 0.3s ease;
+}
+
+
+.pasan-view img{
+  
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
+  background-color: var(--blanco);
+
+  border-radius: 20px 0px 0px 20px; 
+  height: fill-available;
+  width: fill-available;
+
+  padding: 2%;
+  margin: 2%;
+}
+
+.pasan-view article{
+  padding: 2% 2%  2% 0;
+  margin: 0;
+
+}
+.pasan-view p{
+  padding: 0 0 0 2%;
+  margin: 0;
+
+}
+.pasan-view h2{
+  padding: 0 2% 0 0;
+  margin: 0;
+
+}
+
+.pasan-view .pasan-view-info{
+  display: flex;
+  flex-wrap: center;
+  justify-content: space-between;
+
+  background-color: var(--blanco);
+  
+  border-radius: 0px 20px 20px 0px;
+  height: 220px;
+  
+}
+
+.pasan-view .pasan-view-mas-info{
+  color: var(--blanco);
+
+  font-size: 230%;
+  writing-mode: vertical-rl;
+  align-self: center;
+  white-space: nowrap;
+  width: fit-content;
+  height: fit-content;
+  line-height: 0.65;
+
+  
+  margin: 0;
+  padding:8px 8px 8px 0px;
+}
