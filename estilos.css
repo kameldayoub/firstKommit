@@ -67,16 +67,17 @@ article {
 
     width: 560px;
 
-    margin: 20px auto 0;
+    margin: 50px auto 0;
+   /* margin: 0 auto;*/
 
-    padding: 45px 45px 55px;
+    padding: 30px 45px 55px;
 
     background-color: #eee5ce;
 
     box-shadow:
         0 6px 15px rgba(0, 0, 0, 0.35);
 
-    z-index: 1;
+    /*z-index: 1;*/
 }
 /* =========================
    HOJAS DE ATRÁS
@@ -138,7 +139,7 @@ article::after {
 article > h2 {
     position: absolute;
 
-    top: -55px;
+    top: -47px;
     left: 0;
 
     width: 100%;
@@ -158,38 +159,38 @@ article > h2 {
 
 article p,
 article li {
-    font-size: 15px;
-    line-height: 1.7;
+    font-size: 13px;
+    line-height: 1.45;
 }
 
 article p {
-    margin: 12px 0;
+    margin: 10px 0;
 }
 
 
 /* Títulos */
 
 article h3 {
-    font-size: 19px;
-    margin-top: 28px;
-    margin-bottom: 10px;
+    font-size: 17px;
+    margin-top: 18px;
+    margin-bottom: 7px;
 }
 
 article h4 {
-    font-size: 16px;
-    margin-top: 20px;
-    margin-bottom: 8px;
+    font-size: 14px;
+    margin-top: 13px;
+    margin-bottom: 5px;
 }
 
 
 /* Listas */
 
 article ul {
-    padding-left: 25px;
+    padding-left: 22px;
 }
 
 article li {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 
@@ -197,7 +198,7 @@ article li {
    BOTÓN ENVIAR CV
 ========================= */
 
-article a {
+/*article a {
     color: #3c1821;
 }
 
@@ -217,9 +218,29 @@ article section:last-child > a {
     font-style: italic;
 
     text-decoration: none;
+}*/
+
+
+
+article > a {
+    display: inline-block;
+    float: right;
+    margin-top: 20px;
+    padding: 5px 25px;
+
+    color: #3c1821;
+
+    border-bottom: 2px solid #3c1821;
+
+    font-size: 22px;
+    font-style: italic;
+
+    text-decoration: none;
 }
 
-
+article > a:hover {
+    opacity: 0.7;
+}
 /* =========================
    FOOTER
 ========================= */
@@ -244,7 +265,7 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
 
-    padding: 35px 40px;
+    padding: 25px 40px;
 
     border-bottom: 1px solid rgba(238, 229, 206, 0.4);
 }
@@ -300,7 +321,7 @@ footer {
 .footer-enlaces {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px;
+    padding: 25px 40px;
 }
 
 .footer-enlaces nav {
@@ -309,13 +330,13 @@ footer {
     grid-template-columns:
         repeat(6, 1fr);
 
-    gap: 30px;
+    gap: 20px;
 }
 
 
 .footer-columna h3 {
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 
     font-size: 17px;
 }
@@ -330,7 +351,7 @@ footer {
 }
 
 .footer-columna li {
-    margin-bottom: 10px;
+    margin-bottom: 7px;
 }
 
 .footer-columna a {
