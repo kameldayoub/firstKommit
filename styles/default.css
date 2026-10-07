@@ -182,15 +182,15 @@ header {
   color: var(--blanco);
 
 
-  height: 120px;
   padding-top: 3%;
   padding-left: 10%;
   padding-right: 10%;
+  padding-bottom: 3%;
   margin: 0 auto;
 }
 
 
-main {
+.lobby-main{
   background-color: var(--marron);
   color: var(--blaco);
 }
