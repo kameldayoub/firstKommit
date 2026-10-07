@@ -17,7 +17,7 @@ a{
 }
 .pasan-view:hover{
   transform: scale(1.05);
-}
+}F
 
 .icono:hover{
   transform: scale(.95);
@@ -35,12 +35,6 @@ a{
   border: 5px solid var(--blanco);
   height: 50px;
   width: 50px;
-}
-
-.header-info{
-  display: flex;
-  flex-wrap: wrap;
-  width: fill-available;
 }
 
 .carrusel{
@@ -169,10 +163,20 @@ a{
   padding:8px 8px 8px 0px;
 }
 
+
+.header-info{
+  display: flex;
+  flex-wrap: wrap;
+  width: fill-available;
+}
+
+
 header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  width: fill-available;
 
   background-color: var(--verde);
   color: var(--blanco);
