@@ -92,14 +92,19 @@
 }
 
 .pasan-view article{
-  padding: 5% 5%  5% 0;
-  margin: 0;
+    height: fit-content;
+    width: fit-content;
+    font-size: 100%;
+
+    margin: 0;
 
 }
 .pasan-view p{
-  padding: 0 0 0 2%;
+  padding: 0 10% 0 1%;
   margin: 0;
-  font-size: smaller;
+  font-size: 100%;
+  
+  line-height: 1.5;
 
 }
 .pasan-view h2{
@@ -123,13 +128,13 @@
 .pasan-view .pasan-view-mas-info{
   color: var(--blanco);
 
-  font-size: 230%;
+  font-size: 200%;
   writing-mode: vertical-rl;
   align-self: center;
   white-space: nowrap;
   width: fit-content;
   height: fit-content;
-  line-height: 0.65;
+  line-height: 0.75;
 
   
   margin: 0;
