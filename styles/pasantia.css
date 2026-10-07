@@ -30,7 +30,7 @@ body {
 
 main {
     width: 100%;
-    padding: 0 20px 80px;
+    padding: 0 20px 120px;
 }
 
 
@@ -115,8 +115,8 @@ article::after {
 article > h2 {
     position: absolute;
 
-    font-size: 350%;
-    top: -8.3%;
+    font-size: 380%;
+    top: -103px;
     left: 0;
 
 

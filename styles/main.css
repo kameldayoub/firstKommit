@@ -92,8 +92,8 @@
 }
 
 .pasan-view article{
-    height: fit-content;
-    width: fit-content;
+  height: fill-available;
+  width: fill-available;
     font-size: 100%;
 
     margin: 0;
@@ -104,6 +104,8 @@
   margin: 0;
   font-size: 100%;
   
+  height: fill-available;
+  width: fill-available;
   line-height: 1.5;
 
 }
