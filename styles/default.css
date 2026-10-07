@@ -15,10 +15,17 @@ a{
   height: fit-content;
 
 }
+.pasan-view:hover{
+  transform: scale(1.05);
+}
 
+.icono:hover{
+  transform: scale(.95);
+}
 
 .icono{
   width: 70%;
+  transition: transform 0.3s ease;
 }
 .mensaje{
   margin-top: 5%;
@@ -99,6 +106,7 @@ a{
   margin-right: 16%;
   
   margin-bottom: 2%;
+  transition: transform 0.3s ease;
 }
 
 
