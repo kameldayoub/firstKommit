@@ -1,0 +1,332 @@
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #352823;
+    color: #29221d;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background-color: #1e4031;
+    color: #f3ead4;
+    min-height: 120px;
+    padding: 25px 8%;
+    border-bottom: 35px solid #571b2c;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+
+/* =========================
+   CONTENIDO PRINCIPAL
+========================= */
+
+main {
+    width: 100%;
+    padding: 0 20px 80px;
+}
+
+
+/* La hoja de la pasantía */
+
+article {
+    max-width: 850px;
+    margin: -30px auto 0;
+    padding: 60px 70px 80px;
+
+    background-color: #eee5ce;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.35);
+
+    position: relative;
+}
+
+
+/* Título BPN */
+
+article > h2 {
+    text-align: center;
+    font-size: 58px;
+    margin: -90px 0 50px;
+
+    color: #eee5ce;
+}
+
+
+/* Textos */
+
+article p,
+article li {
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+article p {
+    margin: 12px 0;
+}
+
+
+/* Títulos */
+
+article h3 {
+    font-size: 19px;
+    margin-top: 28px;
+    margin-bottom: 10px;
+}
+
+article h4 {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+
+/* Listas */
+
+article ul {
+    padding-left: 25px;
+}
+
+article li {
+    margin-bottom: 8px;
+}
+
+
+/* =========================
+   BOTÓN ENVIAR CV
+========================= */
+
+article a {
+    color: #3c1821;
+}
+
+article section:last-child {
+    margin-top: 30px;
+}
+
+article section:last-child > a {
+    display: inline-block;
+
+    margin-top: 20px;
+    padding: 10px 25px;
+
+    border-bottom: 2px solid #3c1821;
+
+    font-size: 22px;
+    font-style: italic;
+
+    text-decoration: none;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background-color: #571b2c;
+    color: #eee5ce;
+
+    border-top: 2px solid #eee5ce;
+}
+
+
+/* =========================
+   PARTE SUPERIOR DEL FOOTER
+========================= */
+
+.footer-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 1200px;
+    margin: 0 auto;
+
+    padding: 35px 40px;
+
+    border-bottom: 1px solid rgba(238, 229, 206, 0.4);
+}
+
+
+/* Logo */
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-logo a {
+    color: #eee5ce;
+    text-decoration: none;
+
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.footer-logo p {
+    margin: 0;
+    font-size: 13px;
+}
+
+
+/* Redes */
+
+.footer-redes {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-redes a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-redes img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+
+/* =========================
+   COLUMNAS
+========================= */
+
+.footer-enlaces {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.footer-enlaces nav {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 30px;
+}
+
+
+.footer-columna h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+
+    font-size: 17px;
+}
+
+
+/* Listas sin estilo */
+
+.footer-columna ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-columna li {
+    margin-bottom: 10px;
+}
+
+.footer-columna a {
+    color: #eee5ce;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+.footer-columna a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media screen and (max-width: 900px) {
+
+    article {
+        padding: 50px 40px 60px;
+    }
+
+    .footer-enlaces nav {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+@media screen and (max-width: 600px) {
+
+    header {
+        padding: 20px;
+    }
+
+    main {
+        padding: 0 10px 50px;
+    }
+
+    article {
+        padding: 40px 25px 50px;
+    }
+
+    article > h2 {
+        font-size: 40px;
+    }
+
+    article p,
+    article li {
+        font-size: 14px;
+    }
+
+
+    .footer-superior {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 25px;
+
+        padding: 30px 25px;
+    }
+
+    .footer-enlaces {
+        padding: 30px 25px;
+    }
+
+    .footer-enlaces nav {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 20px;
+    }
+
+}
+
+
+@media screen and (max-width: 400px) {
+
+    .footer-enlaces nav {
+        grid-template-columns: 1fr;
+    }
+
+}
