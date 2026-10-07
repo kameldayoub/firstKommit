@@ -19,16 +19,34 @@ body {
 ========================= */
 
 header {
+    height: 80px;
     background-color: #1e4031;
-    color: #f3ead4;
-    min-height: 120px;
-    padding: 25px 8%;
-    border-bottom: 35px solid #571b2c;
+    border-bottom: 20px solid #571b2c;
+
+    padding: 0 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 32px;
+header div {
+    display: flex;
+    align-items: center;
+}
+
+header a {
+    color: #eee5ce;
+    text-decoration: none;
+}
+
+header div:first-child a {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+header div:not(:first-child) a {
+    font-size: 12px;
 }
 
 
@@ -45,29 +63,96 @@ main {
 /* La hoja de la pasantía */
 
 article {
-    max-width: 850px;
-    margin: -30px auto 0;
-    padding: 60px 70px 80px;
+    position: relative;
+
+    width: 560px;
+
+    margin: 20px auto 0;
+
+    padding: 45px 45px 55px;
 
     background-color: #eee5ce;
 
     box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.35);
+        0 6px 15px rgba(0, 0, 0, 0.35);
 
-    position: relative;
+    z-index: 1;
 }
+/* =========================
+   HOJAS DE ATRÁS
+========================= */
+
+/* Hoja de atrás izquierda */
+
+article::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+  
+    top: 8px;
+    left: -10px;
+
+    background-color: #e5dcc5;
+
+    transform: rotate(-3deg);
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.20);
+
+    z-index: -1;
+}
+
+
+/* Hoja de atrás derecha */
+
+article::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+
+    top: 10px;
+    left: 10px;
+
+    background-color: #e0d5bc;
+
+    transform: rotate(3deg);
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.18);
+
+    z-index: -1;
+}
+
 
 
 /* Título BPN */
 
 article > h2 {
+    position: absolute;
+
+    top: -55px;
+    left: 0;
+
+    width: 100%;
+
+    margin: 0;
+
     text-align: center;
-    font-size: 58px;
-    margin: -90px 0 50px;
+
+    font-size: 42px;
 
     color: #eee5ce;
-}
 
+    z-index: 5;
+}
 
 /* Textos */
 
