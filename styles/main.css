@@ -2,6 +2,7 @@
 
 :root {
   --verde: #2F4736;
+  --verde-ocusro: #1C2A20;
   --bordo: #51202C;
   --blanco: #EEE5D3;
   --marron: #3E2F29;
@@ -22,8 +23,8 @@
 }
 
 .carrusel-side{
-  background-color: var(--verde);
-  border-radius: 20px;
+  background-color: var(--verde-ocusro);
+  border-radius: 15px;
   width: 30%;
   height: fill-available;
   padding: 0;
@@ -31,9 +32,9 @@
 }
 
 .carrusel-center{
-  background-color: var(--verde);
+  background-color: var(--verde-ocusro);
   border-radius: 20px;
-  width: 30%;
+  width: 40%;
   height: fill-available;
   padding: 0;
   margin: 2% 5% 2% 5%;
