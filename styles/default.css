@@ -2,82 +2,97 @@
 
 
 :root {
-  --verde: #2F4736;
-  --bordo: #51202C;
-  --blanco: #EEE5D3;
-  --marron: #3E2F29;
-  --negro: #222323;
+    --verde: #2F4736;
+    --bordo: #51202C;
+    --blanco: #EEE5D3;
+    --marron: #3E2F29;
+    --negro: #222323;
 }
-*{
-  font-family: 'Inknut Antiqua', serif;
+
+* {
+    font-family: 'Inknut Antiqua', serif;
 }
 
 body {
-  margin: 0;
+    margin: 0;
 }
 
-a{
-  color: var(--blanco);
-  
-  width: fit-content;
-  height: fit-content;
+a {
+    color: var(--blanco);
+
+    width: fit-content;
+    height: fit-content;
 
 }
-.pasan-view:hover{
-  transform: scale(1.05);
+
+.pasan-view:hover {
+    transform: scale(1.05);
 }
 
-.icono:hover{
-  transform: scale(.95);
+.icono:hover {
+    transform: scale(.95);
 }
 
-.icono{
-  width: 70%;
-  transition: transform 0.3s ease;
-}
-.mensaje{
-  margin-top: 5%;
-}
-.perfil{
-  margin-top: -7px;
-  border: 5px solid var(--blanco);
-  height: 50px;
-  width: 50px;
+.icono {
+    width: 70%;
+    transition: transform 0.3s ease;
+    display: block;
 }
 
-
-
-
-.header-info{
-  display: flex;
-  flex-wrap: wrap;
-  width: fill-available;
+.mensaje {
+    margin-top: 5%;
 }
 
+.perfil {
+    border: 5px solid var(--blanco);
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+}
+
+.header-info {
+    display: flex;
+    align-items: center; /* Alinea íconos y perfil al centro verticalmente sin usar márgenes negativos */
+    gap: 25px;           /* Separación limpia y uniforme entre íconos */
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+}
 
 header {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between; /* Separa logo a la izq e info a la der */
+    align-items: center;            /* Centra TODO verticalmente */
 
-  width: fill-available;
+    background-color: var(--verde);
+    color: var(--blanco);
 
-  background-color: var(--verde);
-  color: var(--blanco);
-
-
-  padding-top: 3%;
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-bottom: 3%;
-  margin: 0 auto;
+    height: 150px;
+    padding: 0 180px;               /* Mantiene los márgenes/paddings laterales que querías */
 }
 
+header > div:only-child {
 
-.lobby-main{
-  background-color: var(--marron);
-  color: var(--blaco);
-  padding-bottom: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    width: fill-available;
+
+    background-color: var(--verde);
+    color: var(--blanco);
+    
+    height: 60px;
+
+    margin: 0 auto;
+
+}
+.lobby-main {
+    background-color: var(--marron);
+    color: var(--blaco);
+    padding-bottom: 5%;
 }
 
 
@@ -233,7 +248,7 @@ footer {
         padding: 40px 25px 50px;
     }
 
-    article > h2 {
+    article>h2 {
         font-size: 40px;
     }
 
