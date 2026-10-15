@@ -1,0 +1,137 @@
+
+:root {
+    --verde: #2F4736;
+    --bordo: #51202C;
+    --blanco: #EEE5D3;
+    --marron: #3E2F29;
+    --negro: #222323;
+}
+
+* {
+    margin: 0;
+}
+
+
+/* Recomendado: Para asegurar que el logo se ajuste proporcionalmente sin deformarse */
+.icono {
+    max-height: 60px;
+    /* Evita que la imagen sobrepase el alto del header */
+    width: auto;
+    display: block;
+}
+
+.lobby-main {
+    background-color: var(--marron);
+    color: var(--blaco);
+    padding-bottom: 5%;
+}
+
+.login-background {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blanco);
+    height: 550px;
+    border-radius: 0px 0px 50px 50px;
+    margin: 0 13%;
+    padding: 20px;
+}
+
+
+
+
+.login-form {
+    background-color: var(--verde);
+    width: 550px;
+    display: flex;
+    border-radius: 20px 20px 0 0;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+    padding-bottom: 50px;
+}
+
+/* 1. TÍTULO SUPERIOR (h1) */
+.login-title, h1 {
+    background-color: var(--bordo);
+    color: var(--blanco);
+    font-size: 1.5rem;
+    padding: 8px 30px;
+    border-radius: 20px 20px 0 0;
+    margin: 0;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); /* Sombra 3D inferior */
+}
+
+/* 2. SUBTÍTULOS (h2) */
+.login-subtitle, h2 {
+    color: var(--blanco);
+    font-size: 2rem;
+    font-weight: normal;
+    margin-top: 40px;
+    letter-spacing: 1px;
+    text-align: center;
+    
+    line-height: 0.75;
+}
+
+/* 3. INPUTS (Cajas con sombra de papel) */
+.login-form input {
+    position: relative;
+    z-index: 2; /* Coloca el input por encima de la hoja rotada */
+    height: 70px;
+    width: 100%;
+    background-color: var(--blanco);
+    border: none;
+    padding: 0 12px;
+    font-size: 1rem;
+    color: var(--negro);
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: 0 6px 3px rgba(0, 0, 0, 0.2); /* Sombra 3D inferior */
+}
+/* Contenedor base para la pila de papeles */
+.input-wrapper {
+    
+    position: relative;
+    height: 70px;
+    width: 90%;
+}
+
+.input-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--blanco); /* Tono crema un poco más oscuro/sombreado */
+    transform: rotate(-1.5deg) scaleX(1.005); /* Inclinación hacia la izquierda */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+    z-index: 1;
+}
+
+
+
+/* 4. BOTÓN INFERIOR */
+.login-btn, button {
+    font-weight: normal;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    
+    background-color: var(--bordo);
+    color: var(--blanco);
+    font-size: 1.5rem;
+    padding: 8px 30px;
+    border-radius:  0 0 20px 20px;
+    border: 0;
+    margin: 0;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); /* Sombra 3D inferior */
+}
+
+.login-btn:hover {
+    transform: scale(1.05);
+}
+
