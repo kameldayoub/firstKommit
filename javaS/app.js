@@ -35,7 +35,7 @@ async function iniciarSesion(usuarioIngresado, contraIngresada) {
             const datosUsuario = querySnapshot.docs[0].data();
             localStorage.setItem("fotoPerfil", datosUsuario.foto_perfil);
 
-            window.location.href = "index.html";
+            window.location.href = "main.html";
         } else {
             alert("El usuario o la contraseña son incorrectos.");
         }
