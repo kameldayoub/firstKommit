@@ -1,11 +1,268 @@
+:root {
+    --verde: #2F4736;
+    --verdeOscuro: #1C2A20;
+    --bordo: #51202C;
+    --blanco: #EEE5D3;
+    --marron: #3E2F29;
+    --negro: #222323;
+}
+
+
 .background {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: var(--blanco);
-    height: 550px;
+    height: fit-content;
     border-radius: 0px 0px 50px 50px;
     margin: 0 13%;
+    padding: 60px;
+}
+
+.perfil-superior {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    width: 100%;
+    gap: 30px;
+}
+
+.perfil-superior>section {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.back-shadw {
+    background-color: var(--blanco);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+
+.perfil-superior>section:nth-child(even) {
+    border-radius: 0px 35px 35px 0px;
+
+}
+
+.perfil-foto {
+    margin: 0;
+}
+
+.perfil-foto-marco {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.perfil-foto-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border: 30px solid var(--blanco);
+}
+
+.perfil-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    /* Estira el contenido a todo el ancho de la tarjeta */
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.perfil-titulo {
+    margin-bottom: 0;
+    padding: 20px 40px 0 40px;
+    line-height: 1.5;
+}
+
+.perfil-info-texto {
+    font-size: 100%;
+    line-height: 1.5;
+    padding: 0 40px 20px 40px;
+}
+
+.perfil-info-cv {
+    width: 100%;
+    margin-top: auto;
+    /* Empuja la barra hacia el fondo del recuadro */
+    background-color: var(--verde);
+    display: flex;
+    justify-content: space-between;
+    /* Texto a la izquierda, flecha a la derecha */
+    align-items: center;
+    padding: 15px 30px;
+    box-sizing: border-box;
+}
+
+.perfil-info-cv>p {
+    margin: 0;
+    font-size: 100%;
+    color: var(--blanco);
+    font-weight: bold;
+}
+
+
+
+.perfil-doc {
+    gap: 30px;
+}
+
+
+.perfil-doc-file {
+    padding-left: 20px;
+    background-color: var(--verde);
+    color: var(--blanco);
+    font-size: larger;
+    border-radius: 15px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+
+    gap: 20px;
+    height: 60px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.download-container {
+    background-color: var(--verdeOscuro);
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    /* Obliga a que el ancho sea IGUAL al alto (cuadrado perfecto) */
+    display: flex;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.perfil-pasan-sec {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que los elementos salten a la siguiente fila */
+    width: 100%;
+    gap: 30px;
+    box-sizing: border-box;
+
+    padding: 16px 40px 40px 40px;
+}
+
+.perfil-pasan-link {
+    /* Al haber un gap de 30px, le restamos la mitad (15px) a cada uno para que quepan 2 por fila */
+    width: calc(50% - 15px);
+    box-sizing: border-box;
+
+    /* Alineación interna del contenido del enlace (icono/texto) */
+    display: flex;
+    align-items: center;
+    background-color: var(--verde);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.perfil-pasan-logo {
+    height: 40px;
+    background-color: var(--verdeOscuro);
     padding: 20px;
 }
+
+
+
+.perfil-inferior {
+    margin-top: 30px;
+    padding: 40px;
+    width: 100%;
+    border-radius: 30px;
+}
+
+
+.academico-cabecera {
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+
+}
+
+.academico-resumen {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+
+}
+
+.dato {
+    background-color: var(--verde);
+    color: var(--blanco);
+    font-size: larger;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    height: 60px;
+    overflow: hidden;
+
+    padding-left: 20px;
+
+}
+
+.dato-etiqueta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.dato-valor {
+    background-color: var(--verdeOscuro);
+    height: 100%;
+    /* Toma toda la altura del padre */
+    aspect-ratio: 1 / 1;
+    /* Obliga a que el ancho sea IGUAL al alto (cuadrado perfecto) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.materias-titulo{
+    background-color: var(--verde);
+    color: var(--blanco);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: larger;
+}
+
+.materias-sec{
+    display: flex;
+    flex-direction: row; /* Coloca los elementos uno al lado del otro */
+    flex-wrap: wrap;     /* Permite que salten a la siguiente línea si no caben */
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    gap: 15px;
+    width: 100%;
+}
+
+.materia{
+    
+    flex-grow: 1;       /* Hace que cada materia se estire para ocupar el espacio sobrante de la fila */
+    text-align: center; /* Centra el texto dentro del recuadro */
+    line-height: 1.5;
+    background-color: var(--blanco);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border-radius: 30px 0px 30px 0px;
+    padding: 10px 25px ;
+    /* IMPORTANTE: quitamos 'fit-content' para que flex-grow pueda estirar la caja */
+    width: auto; 
+    margin: 0%;
+
+}
+
