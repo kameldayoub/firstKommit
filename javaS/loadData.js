@@ -10,32 +10,26 @@ const _supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 // Función para cargar los datos del usuario
 async function cargarFotoPerfil(username) {
   try {
-
-    
     const { data: usuario, error } = await _supabase
-      .from('usuario') // <-- Nombre de tu tabla de usuarios
-      .select('imgPerfil_url') // <-- Nombre de la columna que contiene la URL de la foto de perfil
-      .eq('username', username)   // <-- Filtra por el username del usuario logueado
-      .single(); // <-- Espera un solo registro
+      .from('usuario')
+      .select('imgPerfil_url')
+      .eq('username', username)
+      .single();
+
     if (error) {
-      console.error('Error al traer datos del usuario:', error);
+      console.error('Error al traer datos:', error.message);
       return;
     }
-// Diagnóstico: mira en la consola qué devuelven los datos
-    console.log('Datos del usuario recibidos:', usuario);
 
     if (usuario && usuario.imgPerfil_url) {
-      const imgElemento = document.getElementById('imgPerfil');
-      
-      if (imgElemento) {
-        imgElemento.src = usuario.imgPerfil_url;
-      } else {
-        console.error('No se encontró el elemento HTML con id="imgPerfil"');
-      }
-    } else {
-      console.warn('El usuario no tiene una URL de foto asignada.');
-    }
+      // 1. Selecciona TODOS los elementos con la clase 'imgPerfil'
+      const imagenesPerfil = document.querySelectorAll('#imgPerfil');
 
+      // 2. Le asigna la URL a cada uno de ellos
+      imagenesPerfil.forEach(imgElemento => {
+        imgElemento.src = usuario.imgPerfil_url;
+      });
+    }
 
   } catch (err) {
     console.error('Error inesperado:', err);
