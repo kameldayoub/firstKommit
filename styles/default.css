@@ -2,13 +2,17 @@
 
 
 :root {
-    --verde: #2F4736;
-    --bordo: #51202C;
-    --blanco: #EEE5D3;
-    --marron: #3E2F29;
-    --negro: #222323;
+  --verde: #2F4736;
+  --verdeOscuro: #1C2A20;
+  --bordo: #51202C;
+  --blanco: #EEE5D3;
+  --marron: #3E2F29;
+  --negro: #222323;
 }
 
+main{
+    color: var(--negro);
+}
 * {
     font-family: 'Inknut Antiqua', serif;
 }
@@ -22,6 +26,7 @@ a {
 
     width: fit-content;
     height: fit-content;
+    text-decoration: none;
 
 }
 
@@ -36,14 +41,13 @@ a {
 .icono {
     width: 70%;
     transition: transform 0.3s ease;
-    display: block;
 }
 
-.mensaje {
+.header-mensaje {
     margin-top: 5%;
 }
 
-.perfil {
+.header-perfil {
     border: 5px solid var(--blanco);
     height: 60px;
     width: 60px;
@@ -91,7 +95,6 @@ header > div:only-child {
 }
 .lobby-main {
     background-color: var(--marron);
-    color: var(--blaco);
     padding-bottom: 5%;
 }
 
@@ -197,6 +200,10 @@ footer {
     font-size: 17px;
 }
 
+.download{
+    height: 30px;
+    width: 30px;
+}
 
 /* Listas sin estilo */
 
