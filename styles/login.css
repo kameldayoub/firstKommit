@@ -1,11 +1,13 @@
 
 :root {
-    --verde: #2F4736;
-    --bordo: #51202C;
-    --blanco: #EEE5D3;
-    --marron: #3E2F29;
-    --negro: #222323;
+  --verde: #2F4736;
+  --verdeOscuro: #1C2A20;
+  --bordo: #51202C;
+  --blanco: #EEE5D3;
+  --marron: #3E2F29;
+  --negro: #222323;
 }
+
 
 * {
     margin: 0;
