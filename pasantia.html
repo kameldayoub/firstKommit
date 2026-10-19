@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles/default.css">
+    <link rel="stylesheet" href="styles/pasantia.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>Pasantía BPN - FirstKommit</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+
+            <div class="header-logo">
+                <a href="main.html"><img class="icono" src="imagen/logoFirstKommit.png" alt="firstKommit"></a>
+            </div>
+            <div class="header-info">
+                <div class="header-mensaje"><a href="*"><img class="icono" src="imagen/iconoMensaje.png" alt="Mensajes">
+                    </a></div>
+                <div class="header-buzon"><a href="*"><img class="icono" src="imagen/iconoBuzon.png" alt="Buzon"> </a></div>
+                <div>
+                    <a class="icono" href="perfil.html">
+                        <img id="imgPerfil" class="header-perfil" src="imagen/placeholderPerfil.png" alt="Perfil">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pagina">
+
+        <h2 class="pagina-titulo">Empresa</h2>
+
+        <div class="hoja">
+            <article class="pasantia">
+
+                <h3 class="seccion-titulo pasante">Busca pasante</h3>
+
+                <section class="seccion requisito">
+                    <h3 class="seccion-titulo ">Requisitos</h3>
+
+                    <ul class="lista">
+                        <li class="lista-item">listado 1</li>
+                        <li class="lista-item">listado 2</li>
+                    </ul>
+                </section>
+
+                <section class="seccion tarea">
+                    <h3 class="seccion-titulo">Tareas a realizar</h3>
+
+                    <div class="tarea">
+                        <h4 class="tarea-titulo">Tarea 1</h4>
+                        <ul class="lista">
+                            <li class="lista-item">tarea 1 listado 1</li>
+                            <li class="lista-item">tarea 1 listado 2</li>
+                            <li class="lista-item">tarea 1 listado 3</li>
+                        </ul>
+                    </div>
+
+                    <div class="tarea">
+                        <h4 class="tarea-titulo">Tarea 2</h4>
+                        <ul class="lista">
+                            <li class="lista-item">tarea 2 listado 1</li>
+                            <li class="lista-item">tarea 2 listado 2</li>
+                            <li class="lista-item">tarea 2 listado 3</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="seccion info-pasan">
+                    <h3 class="seccion-titulo">Información de la pasantía</h3>
+
+                    <p class="dato">
+                        <strong class="dato-etiqueta">Duración:</strong>
+                        (num) meses, (dato extra)
+                    </p>
+
+                    <p class="dato">
+                        <strong class="dato-etiqueta">Lugar de trabajo:</strong>
+                        lugar, dirección de empresa, ciudad, (mapa interactivo)
+                    </p>
+
+                    <p class="dato">
+                        <strong class="dato-etiqueta">Asignación estímulo:</strong>
+                        (monto en $ pesos mensuales)
+                    </p>
+
+                    <p class="dato">
+                        <strong class="dato-etiqueta">Cantidad de horas:</strong>
+                        horas diarias (horas semanales), horario de entrada y de salida.
+                        4 horas diarias (20 hs. semanales).
+                    </p>
+                </section>
+
+                <section class="seccion postulacion">
+                    <h3 class="seccion-titulo">Postulación</h3>
+
+                    <ul class="lista">
+                        <li class="lista-item">archivo 1 (CV)</li>
+                        <li class="lista-item">archivo 2 (certificado de alumno)</li>
+                        <li class="lista-item">archivo 3 (rendimiento académico actualizado)</li>
+                    </ul>
+                </section>
+
+                <div class="pasantia-pie">
+                    <a class="boton-cv" href="mailto:busquedas@fi.uncoma.edu.ar">
+                        Enviar CV
+                    </a>
+                </div>
+
+            </article>
+        </div>
+
+    </main>
+    <footer>
+
+        <!-- Barra superior del footer -->
+        <section class="footer-superior">
+
+            <!-- Logo y copyright -->
+            <div class="footer-logo">
+                <a href="index.html">
+                    <span>firstKommit</span>
+                </a>
+
+                <p>&copy; 2026 FirstKommit. Todos los derechos reservados.</p>
+            </div>
+
+
+            <!-- Redes sociales -->
+            <nav class="footer-redes" aria-label="Redes sociales">
+
+                <a href="#" aria-label="Instagram">
+                    <img src="img/instagram.png" alt="Instagram">
+                </a>
+
+                <a href="#" aria-label="Facebook">
+                    <img src="img/facebook.png" alt="Facebook">
+                </a>
+
+
+            </nav>
+
+        </section>
+
+
+        <!-- Enlaces del footer -->
+        <section class="footer-enlaces">
+
+            <nav aria-label="Enlaces del pie de página">
+
+                <div class="footer-columna">
+                    <h3>FirstKommit</h3>
+
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="footer-columna">
+                    <h3>Estudiantes</h3>
+
+                    <ul>
+                        <li><a href="#">Pasantías</a></li>
+                        <li><a href="#">Ofertas</a></li>
+                        <li><a href="#">Postulaciones</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="footer-columna">
+                    <h3>Empresas</h3>
+
+                    <ul>
+                        <li><a href="#">Publicar oferta</a></li>
+                        <li><a href="#">Buscar estudiantes</a></li>
+                        <li><a href="#">Información</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="footer-columna">
+                    <h3>Recursos</h3>
+
+                    <ul>
+                        <li><a href="#">Ayuda</a></li>
+                        <li><a href="#">Preguntas frecuentes</a></li>
+                        <li><a href="#">Guía</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="footer-columna">
+                    <h3>Legal</h3>
+
+                    <ul>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="footer-columna">
+                    <h3>Contacto</h3>
+
+                    <ul>
+                        <li><a href="#">Email</a></li>
+                        <li><a href="#">Teléfono</a></li>
+                        <li><a href="#">Ubicación</a></li>
+                    </ul>
+                </div>
+
+            </nav>
+
+        </section>
+
+    </footer>
+
+
+    <script src="javaS/loadData.js"></script>
+</body>
+
+</html>

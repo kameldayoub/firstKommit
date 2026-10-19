@@ -1,168 +1,149 @@
 /* =========================
-   CONFIGURACIÓN GENERAL
+   VARIABLES Y BASE
 ========================= */
 
 :root {
-  --verde: #2F4736;
-  --bordo: #51202C;
-  --blanco: #EEE5D3;
-  --marron: #3E2F29;
-  --negro: #222323;
+    /* Colores */
+    --verde: #2F4736;
+    --bordo: #51202C;
+    --blanco: #EEE5D3;
+    --marron: #3E2F29;
+    --negro: #222323;
+
+    /* Tipografías */
+    --fuente-cursiva: 'Italianno', cursive;
+
+    /* Hoja de la pasantía */
+    --ancho-hoja: 70%;
+    --solape-titulo: -0.2em;
+    /* cuánto tapa la hoja al título (más negativo = tapa más) */
 }
 
 body {
     margin: 0;
     background-color: var(--marron);
-    color: var(--marron);
+    color: var(--negro);
 }
 
 
-
-
-
 /* =========================
-   CONTENIDO PRINCIPAL
+   PÁGINA
 ========================= */
 
-main {
-    width: 100%;
+.pagina {
     padding: 30px 0 120px;
 }
 
-
-/* La hoja de la pasantía */
-
-article {
+/* Título "Empresa": queda por encima de la hoja */
+.pagina-titulo {
     position: relative;
+    /* para respetar el orden de capas */
+    z-index: 2;
+    /* mayor que .hoja (z-index: 1) */
 
-    width: 70%;
-    margin: 100px auto 0;
-   /* margin: 0 auto;*/
+    margin: 60px 0 var(--solape-titulo);
 
+    font-size: 500%;
+    line-height: 1.2;
+    text-align: center;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
+    color: var(--blanco);
+}
+
+
+/* =========================
+   HOJA + HOJAS DE ATRÁS
+========================= */
+
+/* Contenedor: crea su propia capa para que las hojas
+   de atrás queden detrás del contenido pero encima del fondo */
+.hoja {
+    position: relative;
+    z-index: 1;
+
+    width: var(--ancho-hoja);
+    margin: 0 auto;
+}
+
+/* Hojas de atrás (comparten estilo) */
+.hoja::before,
+.hoja::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    /* ocupa lo mismo que la hoja principal */
+    z-index: -1;
+
+    background-color: var(--blanco);
+}
+
+.hoja::before {
+    /* izquierda */
+    transform: translate(-10px, 8px) rotate(-3deg);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.20);
+}
+
+.hoja::after {
+    /* derecha */
+    transform: translate(10px, 10px) rotate(3deg);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================
+   CONTENIDO DE LA PASANTÍA
+========================= */
+
+.pasantia {
     padding: 30px 45px 55px;
 
     background-color: var(--blanco);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
 
-    box-shadow:
-        0 6px 15px rgba(0, 0, 0, 0.35);
-
-    /*z-index: 1;*/
-}
-/* =========================
-   HOJAS DE ATRÁS
-========================= */
-
-/* Hoja de atrás izquierda */
-
-
-
-
-article::before {
-    content: "";
-
-    position: absolute;
-
-    width: 100%;
-    height: 100%;
-
-  
-    top: 8px;
-    left: -10px;
-
-    background-color: var(--blanco);
-
-    transform: rotate(-3deg);
-
-    box-shadow:
-        0 5px 12px rgba(0, 0, 0, 0.20);
-
-    z-index: -1;
-}
-
-
-/* Hoja de atrás derecha */
-
-article::after {
-    content: "";
-
-    position: absolute;
-
-    width: 100%;
-    height: 100%;
-
-
-    top: 10px;
-    left: 10px;
-
-    background-color: var(--blanco);
-
-    transform: rotate(3deg);
-
-    box-shadow:
-        0 5px 12px rgba(0, 0, 0, 0.18);
-
-    z-index: -1;
-}
-
-
-
-/* Título BPN */
-
-article > h2 {
-    position: absolute;
-
-    font-size: 500%;
-    top: -133px;
-    left: 0;
-
-
-    width: 100%;
-
-    margin: 0;
-
-    text-align: center;
-
-
-    color: var(--blanco);
-
-}
-
-/* Textos */
-
-article p,
-article li {
     font-size: 13px;
     line-height: 1.45;
 }
 
-article p {
-    margin: 10px 0;
-}
-
-
 /* Títulos */
-
-article h3 {
-    font-size: 17px;
-    margin-top: 18px;
-    margin-bottom: 7px;
+.pasante{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--bordo);
+}
+.seccion-titulo {
+    margin: 18px 0 7px;
+    font-size: x-large;
+    
 }
 
-article h4 {
-    font-size: 14px;
-    margin-top: 13px;
-    margin-bottom: 5px;
+.tarea-titulo {
+    margin: 13px 0 5px;
+    font-size: large;
 }
-
 
 /* Listas */
 
-article ul {
+.lista {
     padding-left: 22px;
+    font-size: medium;
+    padding-left: 10%;
 }
 
-article li {
+.lista-item {
     margin-bottom: 6px;
+    font-size: smaller;
+}
+
+/* Datos (Duración, Lugar, etc.) */
+
+.dato {
+    margin: 10px 0;
+}
+
+.dato-etiqueta {
+    font-weight: bold;
 }
 
 
@@ -170,48 +151,47 @@ article li {
    BOTÓN ENVIAR CV
 ========================= */
 
-/*article a {
-    color: #3c1821;
+.pasantia-pie {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
 }
 
-article section:last-child {
-    margin-top: 30px;
-}
-
-article section:last-child > a {
-    display: inline-block;
-
-    margin-top: 20px;
-    padding: 10px 25px;
-
-    border-bottom: 2px solid #3c1821;
-
-    font-size: 22px;
-    font-style: italic;
-
-    text-decoration: none;
-}*/
-
-
-
-article > a {
-    display: inline-block;
-    float: right;
-    margin-top: -20px;
+.boton-cv {
     padding: 5px 25px;
 
     color: var(--bordo);
-
     border-bottom: 2px solid var(--bordo);
 
-    font-size: 200%;
-    font-family: 'Italianno', cursive;
-
+    font-family: var(--fuente-cursiva);
+    font-size: 300%;
     text-decoration: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
 }
 
-article > a:hover {
-    opacity: 0.7;
+.boton-cv:hover,
+.boton-cv:focus-visible {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+    transform: scale(1.05);
 }
 
 
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+    :root {
+        --ancho-hoja: 88%;
+    }
+
+    .pagina-titulo {
+        font-size: 300%;
+        margin-top: 40px;
+    }
+
+    .pasantia {
+        padding: 25px 22px 40px;
+    }
+}

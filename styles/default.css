@@ -8,6 +8,7 @@
   --blanco: #EEE5D3;
   --marron: #3E2F29;
   --negro: #222323;
+    --ancho-hoja: 70%;
 }
 
 main{
@@ -43,8 +44,14 @@ a {
     transition: transform 0.3s ease;
 }
 
-.header-mensaje {
-    margin-top: 5%;
+.header-mensaje > a{
+    margin-top: 15px;
+    display: flex;
+    align-items: center; /* Alinea íconos y perfil al centro verticalmente sin usar márgenes negativos */
+}
+.header-buzon > a{
+    display: flex;
+    align-items: center; /* Alinea íconos y perfil al centro verticalmente sin usar márgenes negativos */
 }
 
 .header-perfil {
@@ -57,38 +64,44 @@ a {
 .header-info {
     display: flex;
     align-items: center; /* Alinea íconos y perfil al centro verticalmente sin usar márgenes negativos */
-    gap: 25px;           /* Separación limpia y uniforme entre íconos */
+    justify-content: center; 
 }
 
-.header-logo {
+.header-logo > a{
+    display: flex;
+    align-items: center; /* Alinea íconos y perfil al centro verticalmente sin usar márgenes negativos */
+    
+}
+header {
+    background-color: var(--verde);
+}
+
+.header-content {
     display: flex;
     align-items: center;
-}
-
-header {
-    display: flex;
-    justify-content: space-between; /* Separa logo a la izq e info a la der */
-    align-items: center;            /* Centra TODO verticalmente */
+    justify-content: space-between;
+    width: 100%;
+    gap: 25px;
 
     background-color: var(--verde);
     color: var(--blanco);
 
     height: 150px;
-    padding: 0 180px;               /* Mantiene los márgenes/paddings laterales que querías */
+    
+    width: var(--ancho-hoja);
+    margin: 0 auto;
 }
 
-header > div:only-child {
-
+.header-content > div:only-child {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
 
-    width: fill-available;
 
     background-color: var(--verde);
     color: var(--blanco);
     
-    height: 60px;
+    height: 150px;
 
     margin: 0 auto;
 
