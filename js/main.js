@@ -3,7 +3,7 @@ async function cargarFotoPerfil(nom_usuario) {
   try {
     const { data: usuario, error } = await _supabase
       .from('usuario')
-      .select('imgPerfil_url')
+      .select('foto_perfil')
       .eq('nom_usuario', nom_usuario)
       .single();
 
@@ -12,12 +12,12 @@ async function cargarFotoPerfil(nom_usuario) {
       return;
     }
 
-    if (usuario && usuario.imgPerfil_url) {
+    if (usuario && usuario.foto_perfil) {
       console.log('entro :',usuario);
-      const imagenesPerfil = document.querySelectorAll('#imgPerfil');
+      const imagenesPerfil = document.querySelectorAll('#foto_perfil');
 
       imagenesPerfil.forEach(imgElemento => {
-        imgElemento.src = usuario.imgPerfil_url;
+        imgElemento.src = usuario.foto_perfil;
       });
     }else{
       console.log('problema:',usuario);
