@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/default.css">
     <link rel="stylesheet" href="styles/main.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
+
     <title>firstKommit</title>
 </head>
 
@@ -22,15 +22,17 @@
             <div class="header-info">
                 <div class="header-mensaje"><a href="*"><img class="icono" src="imagen/iconoMensaje.png" alt="Mensajes">
                     </a></div>
-                <div class="header-buzon"><a href="*"><img class="icono" src="imagen/iconoBuzon.png" alt="Buzon"> </a></div>
+                <div class="header-buzon"><a href="*"><img class="icono" src="imagen/iconoBuzon.png" alt="Buzon"> </a>
+                </div>
                 <div>
                     <a class="icono" href="perfil.html">
-                        <img id="imgPerfil" class="header-perfil" src="imagen/placeholderPerfil.png" alt="Perfil">
+                        <img id="foto_perfil" class="header-perfil" src="imagen/placeholderPerfil.png" alt="Perfil">
                     </a>
                 </div>
             </div>
         </div>
     </header>
+
     <main class="lobby-main">
         <div class="carrusel">
             <button class="carrusel-btn btn-izq" aria-label="Anterior">&#10094;</button>
@@ -53,58 +55,15 @@
                 <span class="punto"></span>
             </div>
         </div>
-        <article>
-            <div class="pasan-titulo">
-                <h1>Pasantías Disponibles</h1>
-                <img src="imagen/flecha.png" alt="">
-            </div>
 
-            <a class="pasan-view" href="pasantiaBPN.html">
-                <div class="pasan-view-info">
-                    <img src="imagen\logoBPN.png" alt="BPN">
-                    <article>
-                        <h2>BPN:</h2>
-                        <p>En esta pasantía mantendrás los planes de continuidad del negocio diseñando análisis BIA y
-                            métricas RTO/RPO.
-                            Colaborarás en el gobierno de TI mediante la revisión de normativas, políticas y
-                            procedimientos tecnológicos.
-                            Brindarás soporte en auditorías internas y externas aplicando conceptos de gestión de
-                            riesgos en sistemas.</p>
-                    </article>
-                </div>
-                <p class="pasan-view-mas-info">MAS INFO</p>
-            </a>
-            <a class="pasan-view" href="pasantiaHalli.html">
-                <div class="pasan-view-info">
-                    <img src="imagen/logoHalli.png" alt="Halliburton"></img>
-                    <article>
-                        <h2>HALLIBURTON:</h2>
-                        <p>En esta pasantía asistirás al equipo brindando atención y soporte técnico a los usuarios
-                            finales.
-                            Realizarás el control, revisión y mantenimiento del hardware y software de los equipos
-                            informáticos.
-                            Brindarás apoyo en la gestión de redes, sistemas de telefonía y diversas plataformas
-                            tecnológicas.</p>
-                    </article>
-                </div>
-                <p class="pasan-view-mas-info">MAS INFO</p>
-            </a>
-            <a class="pasan-view" href="pasantiaCarlos.html">
-                <div class="pasan-view-info">
-                    <img src="imagen/logoCalosIsla.png" alt="Carlos Isla"></img>
-                    <article>
-                        <h2>CARLOS ISLA:</h2>
-                        <p>En esta pasantía brindarás soporte técnico a usuarios, mantendrás equipos y gestionarás
-                            insumos tecnológicos.
-                            Resolverás problemas de conectividad a internet entre sucursales tanto de forma presencial
-                            como remota.
-                            Supervisarás el sistema de cámaras CCTV y realizarás el mantenimiento del software de
-                            turnero digital.</p>
-                    </article>
-                </div>
-                <p class="pasan-view-mas-info">MAS INFO</p>
-            </a>
 
+        <div class="pasan-titulo">
+            <h1>Pasantías Disponibles</h1>
+            <img src="imagen/flecha.png" alt="">
+        </div>
+
+        <article id="pasan-container">
+            
         </article>
     </main>
 
@@ -220,6 +179,7 @@
     <script src="js/supabaseClient.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/pruebaCargaPasantia.js"></script>
 </body>
 
 </html>
