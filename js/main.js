@@ -13,7 +13,6 @@ async function cargarFotoPerfil(nom_usuario) {
     }
 
     if (usuario && usuario.foto_perfil) {
-      console.log('entro :',usuario);
       const imagenesPerfil = document.querySelectorAll('#foto_perfil');
 
       imagenesPerfil.forEach(imgElemento => {
@@ -37,8 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Lo convertimos de texto a objeto JS
     const usuarioActivo = JSON.parse(usuarioActivoRaw);
 
-    console.log('Usuario activo:', usuarioActivo);
-    console.log('Usuario nobre:', usuarioActivo.nombre);
     // 3. Le pasamos solo el nombre de usuario a la función
     cargarFotoPerfil(usuarioActivo.nombre);
   } else {
