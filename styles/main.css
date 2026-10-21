@@ -130,110 +130,111 @@
 
 
 
+/* =========================================================
+   PASANTÍAS
+   ========================================================= */
 
 
+/* ---------- Título de la sección ---------- */
 
-
-.pasan-titulo{
+.pasan-titulo {
   background-color: var(--bordo);
-  margin: 0;
   color: var(--blanco);
-  padding: 2% 0 2% 0;
+  padding: 2% 0;
   margin: 0 0 -1% 0;
 }
-.pasan-titulo h1{
-  padding: 0 13% 0 13%;
-  margin: 0;
 
+.pasan-titulo h1 {
+  margin: 0;
+  padding: 0 13%;
 }
 
-.pasan-titulo img{
+.pasan-titulo img {
   width: 60%;
 }
 
 
+/* ---------- <a class="pasan-view"> : tarjeta completa ---------- */
 
-
-.pasan-view{
-  
-  height: 220px;
+.pasan-view {
   display: flex;
-  flex-wrap: center;
   justify-content: space-between;
+  min-height: 220px;          /* crece si el texto necesita más lugar */
+  margin: 0 16% 2% 16%;
 
-  border: 0;
-  text-decoration: none;
   color: var(--marron);
-
-  margin-left: 16%;
-  margin-right: 16%;
-  
-  margin-bottom: 2%;
+  text-decoration: none;
+  border: 0;
   transition: transform 0.3s ease;
 }
 
 
-.pasan-view img{
-  
-  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
-  background-color: var(--blanco);
+/* ---------- .pasan-view-info : parte beige ---------- */
 
-  border-radius: 20px 0px 0px 20px; 
-  height: fill-available;
-  width: fill-available;
-
-  padding: 2%;
-  margin: 2%;
-}
-
-.pasan-view article{
-  height: fill-available;
-  width: fill-available;
-    font-size: 100%;
-
-    margin: 0;
-
-}
-.pasan-view p{
-  padding: 0 10% 0 1%;
-  margin: 0;
-  font-size: 100%;
-  
-  height: fill-available;
-  width: fill-available;
-  line-height: 1.5;
-
-}
-.pasan-view h2{
-  padding: 0 2% 0 0;
-  margin: 0;
-
-}
-
-.pasan-view .pasan-view-info{
+.pasan-view-info {
   display: flex;
-  flex-wrap: center;
-  justify-content: space-between;
+  flex: 1;
+  min-width: 0;               /* permite que se achique al reducir la pantalla */
 
   background-color: var(--blanco);
-  
-  border-radius: 0px 20px 20px 0px;
-  height: 220px;
-  
+  border-radius: 0 20px 20px 0;
 }
 
-.pasan-view .pasan-view-mas-info{
-  color: var(--blanco);
 
-  font-size: 200%;
-  writing-mode: vertical-rl;
+/* ---------- Logo (tamaño fijo) ---------- */
+
+.pasan-view-info img {
+  box-sizing: border-box;
+  flex-shrink: 0;             /* nunca se achica */
   align-self: center;
-  white-space: nowrap;
+  width: 180px;
+  height: 180px;
+  margin: 18px;
+  padding: 12px;
+
+  object-fit: contain;
+  background-color: var(--blanco);
+  border-radius: 20px 0 0 20px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ---------- Texto (único que se achica de ancho) ---------- */
+
+.pasan-view-info article {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 18px 0;
+}
+
+.pasan-view-info h2 {
+  margin: 0 0 6px 0;          /* poco espacio entre el título y el párrafo */
+  padding: 0 2% 0 0;
+  line-height: 1.2;
+}
+
+.pasan-view-info p {
+  margin: 0;
+  padding: 0 10% 0 1%;
+
+  font-size: 1.3cqi;   /* se adapta al ancho, con mínimo y máximo */
+  line-height: 1.35;          /* antes 1.5: menos espacio entre renglones */
+}
+
+
+/* ---------- "MAS INFO" vertical ---------- */
+
+.pasan-view-mas-info {
+  align-self: center;
   width: fit-content;
   height: fit-content;
-  line-height: 0.75;
-
-  
   margin: 0;
-  padding:8px 8px 8px 0px;
+  padding: 8px 8px 8px 0;
+
+  color: var(--blanco);
+  font-size: 200%;
+  line-height: 0.75;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
 }
