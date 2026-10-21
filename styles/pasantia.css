@@ -41,7 +41,7 @@ body {
     z-index: 2;
     /* mayor que .hoja (z-index: 1) */
 
-    margin: 60px 0 var(--solape-titulo);
+    margin: 40px 0 var(--solape-titulo);
 
     font-size: 500%;
     line-height: 1.2;

@@ -10,7 +10,9 @@ async function cargarPasantias() {
     try {
         const { data: pasantias, error } = await _supabase
             .from('pasantia')
-            .select(`id_pasantia, descripcion_breve, empresa!inner ( nom_empresa,usuario!inner ( foto_perfil))`)
+            .select(`id_pasantia, 
+                descripcion_breve, 
+                empresa!inner ( nom_empresa,usuario!inner ( foto_perfil))`)
             .gt('fecha_fin', new Date().toISOString()); // Mayor que la fecha actual
 
 
@@ -48,7 +50,7 @@ async function cargarPasantias() {
         // 3. Iterar y construir el DOM
         pasantias.forEach(item => {
             const linkPasan = document.createElement('a');
-            linkPasan.href = 'pasantiaBPN.html';
+            linkPasan.href = `pasantia.html?id=${item.id_pasantia}`; //servira mas tarde para cargar los contenidos de la pasantia en el html de la misma
             linkPasan.classList.add('pasan-view');
 
             const divPasan = document.createElement('div');
