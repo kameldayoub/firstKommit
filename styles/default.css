@@ -13,6 +13,7 @@
 
 main{
     color: var(--negro);
+    overflow: hidden;
 }
 * {
     font-family: 'Inknut Antiqua', serif;
@@ -31,65 +32,100 @@ a {
 
 }
 
-.pasan-view:hover {
-    transform: scale(1.05);
-}
-
-.icono:hover {
-    transform: scale(.95);
-}
-
-.icono {
-    width: 70%;
-    transition: transform 0.3s ease;
-}
-
-.header-mensaje > a{
-    margin-top: 15px;
-    display: flex;
-    align-items: center; /* Alinea íconos y perfil al centro verticalmente sin usar márgenes negativos */
-}
-.header-buzon > a{
-    display: flex;
-    align-items: center; /* Alinea íconos y perfil al centro verticalmente sin usar márgenes negativos */
-}
-
-.header-perfil {
-    border: 5px solid var(--blanco);
-    height: 60px;
-    width: 60px;
-    object-fit: cover;
-}
-
-.header-info {
-    display: flex;
-    align-items: center; /* Alinea íconos y perfil al centro verticalmente sin usar márgenes negativos */
-    justify-content: center; 
-}
-
-.header-logo > a{
-    display: flex;
-    align-items: center; /* Alinea íconos y perfil al centro verticalmente sin usar márgenes negativos */
-    
-}
 header {
     background-color: var(--verde);
 }
+
+/* ---------- .header-content : barra interior ---------- */
 
 .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    gap: 25px;
-
-    background-color: var(--verde);
-    color: var(--blanco);
 
     height: 150px;
-    
     width: var(--ancho-hoja);
     margin: 0 auto;
+
+    color: var(--blanco);
+}
+
+
+/* ---------- .header-logo ---------- */
+
+.header-logo {
+    flex-shrink: 0;             /* el logo no se comprime al achicar la página */
+}
+
+.header-logo > a {
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+/* ---------- .header-info : mensaje, buzón y perfil ---------- */
+
+.header-info {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;             /* el grupo de íconos no se comprime */
+}
+
+.header-info > div {
+    flex-shrink: 0;             /* ni mensaje, ni buzón, ni perfil */
+}
+
+.header-mensaje > a {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;           /* ajuste de la burbuja de diálogo */
+}
+
+.header-buzon > a {
+    display: flex;
+    align-items: center;
+}
+
+.header-perfil {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border: 5px solid var(--blanco);
+}
+
+
+/* ---------- Íconos (efecto hover) ---------- */
+
+
+.icono {
+    width: auto;            /* en lugar de 60% */
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+/* Poné acá el tamaño que cada ícono muestra hoy */
+.header-logo .icono {
+    width: 300px;
+}
+
+.header-mensaje .icono,
+.header-buzon .icono {
+    width: 45px;
+}
+
+
+.icono:hover {
+    transform: scale(.95);
+}
+
+/* El enlace del perfil es un <a> en línea: sin esto no recibe width ni transform */
+a.icono {
+    display: inline-block;
+    width: auto;
 }
 
 .header-content > div:only-child {
@@ -102,6 +138,7 @@ header {
     color: var(--blanco);
     
     height: 150px;
+    width: 100%;
 
     margin: 0 auto;
 
@@ -260,20 +297,17 @@ footer {
 @media screen and (max-width: 600px) {
 
 
-    main {
-        padding: 0 10px 50px;
-    }
 
-    article {
+    footer > article {
         padding: 40px 25px 50px;
     }
 
-    article>h2 {
+    footer >article>h2 {
         font-size: 40px;
     }
 
-    article p,
-    article li {
+    footer >article p,
+    footer >article li {
         font-size: 14px;
     }
 
