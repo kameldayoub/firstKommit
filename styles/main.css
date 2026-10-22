@@ -8,70 +8,112 @@
   --marron: #3E2F29;
   --negro: #222323;
 }
+/* =========================================================
+   CARRUSEL
+   ========================================================= */
 
 .carrusel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative; /* Indispensable para posicionar botones y puntos dentro */
+  position: relative;        /* Indispensable para posicionar tarjetas, botones y puntos */
   height: 450px;
   background-color: var(--blanco);
   border-radius: 0 0 50px 50px;
   margin: 0 13%;
 }
 
-/* Reglas de los artículos */
+
+/* ---------- Reglas comunes de las tarjetas ---------- */
+
 .carrusel article {
-  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;            /* centra verticalmente */
+
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
-  transition: all 0.3s ease;
+
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease; /* anima posición, tamaño, color y opacidad */
 }
 
+.carrusel article img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ---------- Centro ---------- */
+
 .carrusel-center {
-  background-color: var(--verdeOscuro);
+  left: 25%;
   width: 50%;
   height: 85%;
-  z-index: 2; /* Por encima de los laterales */
+  z-index: 3;                /* Por encima de los laterales */
+
+  background-color: var(--verdeOscuro);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
+
+/* ---------- Laterales ---------- */
+
 .carrusel-side {
-  background-color: var(--verde);
   width: 35%;
   height: 65%;
-  z-index: 1; /* Por detrás del centro */
+  z-index: 2;                /* Por detrás del centro */
+
+  background-color: var(--verde);
 }
 
-/* Solapamiento hacia el centro */
-.carrusel-side:first-of-type {
-  transform: translateX(45%);
+.carrusel-izq {
+  left: 5.75%;               /* solapada hacia el centro */
 }
 
-.carrusel-side:last-of-type {
-  transform: translateX(-45%);
+.carrusel-der {
+  left: 59.25%;              /* solapada hacia el centro */
 }
+
+
+/* ---------- Oculta (detrás de todas, en el centro) ---------- */
+
+.carrusel-hidde {
+  left: 32.5%;
+  width: 35%;
+  height: 65%;
+  z-index: 1;
+
+  background-color: var(--verde);
+  transform: scale(0.8);
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* ---------- Botones ---------- */
 
 .carrusel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10; /* Se colocan por encima de todas las tarjetas */
-  
-  background-color: var(--marron);
-  color: var(--blanco);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 18px;
-  cursor: pointer;
-  
+  z-index: 10;               /* Por encima de todas las tarjetas */
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--marron);
+  color: var(--blanco);
+  font-size: 18px;
+  cursor: pointer;
+
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
