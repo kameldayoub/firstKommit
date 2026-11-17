@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/default.css">
+    <link rel="stylesheet" href="styles/pasantia.css">
+    <link rel="stylesheet" href="styles/nuevaPasantia.css">
+    <title>FirstKommit - Editar pasantía</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="header-logo">
+                <a href="mainEmpresa.html"><img class="icono" src="img/logoFirstKommit.png" alt="firstKommit"></a>
+            </div>
+            <div class="header-info">
+                <div class="header-mensaje"><a href="#"><img class="icono" src="img/iconoMensaje.png" alt="Mensajes"></a></div>
+                <div class="header-buzon"><a href="#"><img class="icono" src="img/iconoBuzon.png" alt="Buzon"></a></div>
+                <div>
+                    <a class="icono" href="perfilEmpresa.html">
+                        <img id="foto_perfil" class="header-perfil" src="img/placeholderPerfil.png" alt="Perfil">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pagina">
+
+        <h2 class="pagina-titulo">Editar pasantía</h2>
+
+        <div class="hoja">
+            <form id="formEditar" class="pasantia" novalidate>
+
+                <h3 class="seccion-titulo pasante">
+                    <span id="nombreEmpresa">Pasantía</span>
+                    · <span id="estadoPasantia"></span>
+                </h3>
+
+                <section class="seccion">
+                    <div class="campo">
+                        <label for="descripcion">Descripción breve</label>
+                        <textarea id="descripcion" name="descripcion" rows="4" maxlength="500" required></textarea>
+                        <small class="campo-ayuda"><span id="contadorDescripcion">0</span>/500</small>
+                    </div>
+                </section>
+
+                <section class="seccion info-pasan">
+                    <h3 class="seccion-titulo">Información de la pasantía</h3>
+
+                    <div class="campos-grilla">
+                        <div class="campo">
+                            <label for="duracion">Duración (meses)</label>
+                            <input type="number" id="duracion" name="duracion" min="1" max="36" step="1" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="horasDiarias">Horas diarias</label>
+                            <input type="number" id="horasDiarias" name="horasDiarias" min="1" max="12" step="1" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="monto">Asignación estímulo ($)</label>
+                            <input type="number" id="monto" name="monto" min="0" step="1" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="fechaFin">Fecha de finalización</label>
+                            <input type="date" id="fechaFin" name="fechaFin" required>
+                            <small class="campo-ayuda">Con una fecha futura la pasantía está activa; con hoy o una fecha pasada, finalizada.</small>
+                        </div>
+                    </div>
+                </section>
+
+                <p class="campo-ayuda">Los requisitos y las tareas no se pueden modificar desde acá.</p>
+
+                <p id="mensajeForm" class="mensaje-form" role="alert" hidden></p>
+
+                <div class="pasantia-pie pie-form">
+                    <a class="boton-cancelar" id="linkCancelar" href="mainEmpresa.html">Cancelar</a>
+                    <button type="button" class="boton-cancelar" id="btnFinalizar">Finalizar ahora</button>
+                    <button type="submit" class="boton-cv" id="btnGuardar">Guardar cambios</button>
+                </div>
+
+            </form>
+        </div>
+
+    </main>
+
+    <script src="js/utils.js"></script>
+    <script src="js/editarPasantia.js"></script>
+</body>
+
+</html>
