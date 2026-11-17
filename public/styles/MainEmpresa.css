@@ -1,0 +1,256 @@
+/* =========================================================
+   PANEL EMPRESA (se suma a default.css y main.css)
+   ========================================================= */
+
+/* ---------- Panel superior (reemplaza al carrusel) ---------- */
+
+.empresa-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+  margin: 0 13%;
+  padding: 50px 40px;
+
+  background-color: var(--blanco);
+  border-radius: 0 0 50px 50px;
+}
+
+.empresa-saludo {
+  text-align: center;
+}
+
+.empresa-nombre {
+  margin: 0;
+  font-size: 300%;
+  color: var(--bordo);
+}
+
+.empresa-subtitulo {
+  margin: 8px 0 0;
+  color: var(--marron);
+}
+
+
+/* ---------- Resumen (reusa el estilo "dato" del perfil) ---------- */
+
+.empresa-resumen {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.empresa-resumen .dato {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  height: 60px;
+  margin: 0;
+  padding-left: 20px;
+  overflow: hidden;
+
+  background-color: var(--verde);
+  color: var(--blanco);
+  font-size: larger;
+  border-radius: 15px;
+}
+
+.empresa-resumen .dato-etiqueta {
+  display: flex;
+  align-items: center;
+}
+
+.empresa-resumen .dato-valor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+
+  background-color: var(--verdeOscuro);
+}
+
+
+/* ---------- Botón "Publicar nueva pasantía" ---------- */
+
+.empresa-publicar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 0 0 25px;
+  height: 60px;
+  overflow: hidden;
+
+  background-color: var(--bordo);
+  color: var(--blanco);
+  font-size: larger;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.empresa-publicar:hover,
+.empresa-publicar:focus-visible {
+  transform: scale(1.05);
+}
+
+.empresa-publicar-mas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 200%;
+}
+
+
+/* ---------- Tarjetas de pasantías propias ---------- */
+
+.empresa-pasan-estado {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.etiqueta {
+  padding: 4px 14px;
+
+  background-color: var(--marron);
+  color: var(--blanco);
+  font-size: 0.8rem;
+  border-radius: 20px;
+}
+
+.etiqueta-activa {
+  background-color: var(--verde);
+}
+
+.etiqueta-cerrada {
+  background-color: var(--bordo);
+}
+
+
+/* ---------- Postulantes ---------- */
+
+.postulantes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0 16% 2% 16%;
+}
+
+.postulante {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 18px 25px;
+
+  background-color: var(--blanco);
+  color: var(--marron);
+  border-radius: 0 20px 20px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.postulante-foto {
+  flex-shrink: 0;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border: 5px solid var(--blanco);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.postulante-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.postulante-nombre {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+}
+
+.postulante-carrera,
+.postulante-pasantia {
+  margin: 0 0 4px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.postulante-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.postulante-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+
+  color: var(--blanco);
+  font-size: 0.9rem;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.postulante-btn:hover {
+  transform: scale(1.05);
+}
+
+.postulante-btn-ver {
+  background-color: var(--verde);
+}
+
+.postulante-btn-cv {
+  background-color: var(--verdeOscuro);
+}
+
+.postulante-btn-cv .download {
+  height: 20px;
+  width: 20px;
+}
+
+.empresa-vacio {
+  margin: 0 16% 2%;
+  padding: 30px;
+
+  background-color: var(--blanco);
+  color: var(--marron);
+  text-align: center;
+  border-radius: 20px;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .empresa-panel {
+    margin: 0 4%;
+    padding: 30px 20px;
+  }
+
+  .empresa-nombre {
+    font-size: 200%;
+  }
+
+  .postulantes {
+    margin: 0 4% 4%;
+  }
+
+  .postulante {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .postulante-acciones {
+    flex-direction: row;
+  }
+}

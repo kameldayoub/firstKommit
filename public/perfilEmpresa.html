@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/default.css">
+    <link rel="stylesheet" href="styles/perfil.css">
+    <link rel="stylesheet" href="styles/perfilEmpresa.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>FirstKommit - Perfil de empresa</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+
+            <div class="header-logo">
+                <a href="mainEmpresa.html"><img class="icono" src="img/logoFirstKommit.png" alt="firstKommit"></a>
+            </div>
+            <div class="header-info">
+                <div class="header-mensaje"><a href="#"><img class="icono" src="img/iconoMensaje.png" alt="Mensajes"></a></div>
+                <div class="header-buzon"><a href="#"><img class="icono" src="img/iconoBuzon.png" alt="Buzon"></a></div>
+                <div>
+                    <a class="icono" href="perfilEmpresa.html">
+                        <img id="foto_perfil" class="header-perfil" src="img/placeholderPerfil.png" alt="Perfil">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="lobby-main">
+        <div class="background">
+
+            <div class="perfil-superior">
+
+                <!-- 1. Logo (izquierda) -->
+                <section class="perfil-foto">
+                    <figure class="perfil-foto-marco">
+                        <img id="logo_empresa" class="back-shadw perfil-foto-img empresa-logo" src="img/placeholderPerfil.png" alt="Logo de la empresa">
+                    </figure>
+                </section>
+
+                <!-- 2. Quiénes somos (derecha) -->
+                <section class="back-shadw perfil-info">
+                    <h2 id="empresaNombre" class="perfil-titulo">NOMBRE DE LA EMPRESA</h2>
+                    <p id="empresaDireccion" class="perfil-info-texto"></p>
+                </section>
+
+                <!-- 3. Acciones (izquierda) -->
+                <section class="perfil-doc">
+                    <a class="perfil-doc-file" href="nuevaPasantia.html">
+                        <p>Publicar pasantía</p>
+                        <div class="download-container empresa-mas">+</div>
+                    </a>
+                    <a class="perfil-doc-file" href="editarPerfilEmpresa.html">
+                        <p>Editar perfil</p>
+                        <div class="download-container empresa-mas">✎</div>
+                    </a>
+                </section>
+
+                <!-- 4. Pasantías publicadas (derecha) -->
+                <section class="back-shadw perfil-pasan">
+                    <h2 class="perfil-titulo">Pasantías publicadas</h2>
+                    <section id="pasantiasPublicadas" class="perfil-pasan-sec">
+
+                        <!-- Plantilla de ejemplo (se reemplaza con js/perfilEmpresa.js) -->
+                        <a class="perfil-pasan-link" href="pasantia.html?id=1">
+                            <img class="perfil-pasan-logo" src="img/placeholderPerfil.png" alt="">
+                            <p>Soporte técnico</p>
+                        </a>
+
+                    </section>
+                </section>
+
+            </div>
+
+
+            <div class="back-shadw perfil-inferior">
+
+                <section class="academico">
+                    <div class="academico-resumen">
+                        <p class="dato">
+                            <span class="dato-etiqueta">Pasantías activas</span>
+                            <span id="datoActivas" class="dato-valor">0</span>
+                        </p>
+                        <p class="dato">
+                            <span class="dato-etiqueta">Pasantías finalizadas</span>
+                            <span id="datoFinalizadas" class="dato-valor">0</span>
+                        </p>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+    </main>
+
+
+    <footer>
+
+        <!-- Barra superior del footer -->
+        <section class="footer-superior">
+
+            <!-- Logo y copyright -->
+            <div class="footer-logo">
+                <a href="mainEmpresa.html">
+                    <span>firstKommit</span>
+                </a>
+
+                <p>&copy; 2026 FirstKommit. Todos los derechos reservados.</p>
+            </div>
+
+
+            <!-- Redes sociales -->
+            <nav class="footer-redes" aria-label="Redes sociales">
+
+                <a href="#" aria-label="Instagram">
+                    <img src="img/instagram.png" alt="Instagram">
+                </a>
+
+                <a href="#" aria-label="Facebook">
+                    <img src="img/facebook.png" alt="Facebook">
+                </a>
+
+            </nav>
+
+        </section>
+
+
+        <!-- Enlaces del footer -->
+        <section class="footer-enlaces">
+
+            <nav aria-label="Enlaces del pie de página">
+
+                <div class="footer-columna">
+                    <h3>FirstKommit</h3>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-columna">
+                    <h3>Estudiantes</h3>
+                    <ul>
+                        <li><a href="#">Pasantías</a></li>
+                        <li><a href="#">Ofertas</a></li>
+                        <li><a href="#">Postulaciones</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-columna">
+                    <h3>Empresas</h3>
+                    <ul>
+                        <li><a href="nuevaPasantia.html">Publicar oferta</a></li>
+                        <li><a href="#">Buscar estudiantes</a></li>
+                        <li><a href="#">Información</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-columna">
+                    <h3>Recursos</h3>
+                    <ul>
+                        <li><a href="#">Ayuda</a></li>
+                        <li><a href="#">Preguntas frecuentes</a></li>
+                        <li><a href="#">Guía</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-columna">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-columna">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><a href="#">Email</a></li>
+                        <li><a href="#">Teléfono</a></li>
+                        <li><a href="#">Ubicación</a></li>
+                    </ul>
+                </div>
+
+            </nav>
+
+        </section>
+
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabaseClient.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/perfilEmpresa.js"></script>
+
+</body>
+
+</html>

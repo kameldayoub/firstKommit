@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/default.css">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/mainEmpresa.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <title>firstKommit</title>
+
+    <title>FirstKommit - Empresa</title>
 </head>
 
 <body>
@@ -17,32 +18,77 @@
         <div class="header-content">
 
             <div class="header-logo">
-                <a href="index.html"><img class="icono" src="imagen/logoFirstKommit.png" alt="firstKommit"></a>
+                <a href="mainEmpresa.html"><img class="icono" src="img/logoFirstKommit.png" alt="firstKommit"></a>
             </div>
-            
+            <div class="header-info">
+                <div class="header-mensaje"><a href="#"><img class="icono" src="img/iconoMensaje.png" alt="Mensajes"></a></div>
+                <div class="header-buzon"><a href="#"><img class="icono" src="img/iconoBuzon.png" alt="Buzon"></a></div>
+                <div>
+                    <a class="icono" href="perfilEmpresa.html">
+                        <img id="foto_perfil" class="header-perfil" src="img/placeholderPerfil.png" alt="Perfil">
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
+
     <main class="lobby-main">
-        <div class="login-background">
-            <h1 class="login-title">INICIA SESION</h1>
-            <div class="login-form">
 
-                <h2 class="login-subtitle">USUARIO</h2>
-                <div class="input-wrapper">
-                    <input type="text" id="username" name="username" 
-                        autocapitalize="none" spellcheck="false">
-                </div>
+        <!-- ========== PANEL DE LA EMPRESA ========== -->
+        <section class="empresa-panel">
 
-                <h2 class="login-subtitle">CONTRASEÑA</h2>
-                <div class="input-wrapper">
-                    <input type="password" id="password" name="password" required autocomplete="current-password"
-                        spellcheck="false" autocorrect="off" autocapitalize="off">
-                </div>
-
+            <div class="empresa-saludo">
+                <h1 id="empresaNombre" class="empresa-nombre">Mi empresa</h1>
+                <p class="empresa-subtitulo">Panel de gestión de pasantías</p>
             </div>
 
-            <button type="submit" class="login-btn" id="btnLogin">INICIAR</button>
+            <!-- Resumen rápido -->
+            <div class="empresa-resumen">
+                <p class="dato">
+                    <span class="dato-etiqueta">Pasantías activas</span>
+                    <span id="statActivas" class="dato-valor">0</span>
+                </p>
+                <p class="dato">
+                    <span class="dato-etiqueta">Pasantías finalizadas</span>
+                    <span id="statFinalizadas" class="dato-valor">0</span>
+                </p>
+            </div>
+
+            <!-- Acción principal -->
+            <a class="empresa-publicar" href="nuevaPasantia.html">
+                <span>Publicar nueva pasantía</span>
+                <span class="empresa-publicar-mas">+</span>
+            </a>
+        </section>
+
+
+        <!-- ========== MIS PASANTÍAS ========== -->
+        <div class="pasan-titulo">
+            <h1>Mis Pasantías</h1>
+            <img src="img/flecha.png" alt="">
         </div>
+
+        <article id="pasan-container" class="empresa-pasantias">
+
+            <!-- Plantilla de ejemplo (se reemplaza con js/mainEmpresa.js) -->
+            <a class="pasan-view" href="pasantia.html?id=1">
+                <div class="pasan-view-info">
+                    <img src="" alt="Logo de la empresa">
+                    <article>
+                        <h2>SOPORTE TÉCNICO:</h2>
+                        <p>Brindarás soporte técnico a usuarios, mantendrás equipos y gestionarás insumos
+                            tecnológicos. Resolverás problemas de conectividad entre sucursales.</p>
+                        <div class="empresa-pasan-estado">
+                            <span class="etiqueta etiqueta-activa">Activa</span>
+                            <span class="etiqueta">3 postulantes</span>
+                        </div>
+                    </article>
+                </div>
+                <p class="pasan-view-mas-info">VER</p>
+            </a>
+
+        </article>
+
     </main>
 
     <footer>
@@ -52,11 +98,11 @@
 
             <!-- Logo y copyright -->
             <div class="footer-logo">
-                <a href="index.html">
+                <a href="mainEmpresa.html">
                     <span>firstKommit</span>
                 </a>
 
-                <p>&copy; 2026 FirstKommit. Todos los derechos reservados putes.</p>
+                <p>&copy; 2026 FirstKommit. Todos los derechos reservados.</p>
             </div>
 
 
@@ -71,7 +117,6 @@
                     <img src="img/facebook.png" alt="Facebook">
                 </a>
 
-
             </nav>
 
         </section>
@@ -84,7 +129,6 @@
 
                 <div class="footer-columna">
                     <h3>FirstKommit</h3>
-
                     <ul>
                         <li><a href="#">Inicio</a></li>
                         <li><a href="#">Nosotros</a></li>
@@ -92,10 +136,8 @@
                     </ul>
                 </div>
 
-
                 <div class="footer-columna">
                     <h3>Estudiantes</h3>
-
                     <ul>
                         <li><a href="#">Pasantías</a></li>
                         <li><a href="#">Ofertas</a></li>
@@ -103,21 +145,17 @@
                     </ul>
                 </div>
 
-
                 <div class="footer-columna">
                     <h3>Empresas</h3>
-
                     <ul>
-                        <li><a href="#">Publicar oferta</a></li>
+                        <li><a href="nuevaPasantia.html">Publicar oferta</a></li>
                         <li><a href="#">Buscar estudiantes</a></li>
                         <li><a href="#">Información</a></li>
                     </ul>
                 </div>
 
-
                 <div class="footer-columna">
                     <h3>Recursos</h3>
-
                     <ul>
                         <li><a href="#">Ayuda</a></li>
                         <li><a href="#">Preguntas frecuentes</a></li>
@@ -125,10 +163,8 @@
                     </ul>
                 </div>
 
-
                 <div class="footer-columna">
                     <h3>Legal</h3>
-
                     <ul>
                         <li><a href="#">Términos y condiciones</a></li>
                         <li><a href="#">Privacidad</a></li>
@@ -136,10 +172,8 @@
                     </ul>
                 </div>
 
-
                 <div class="footer-columna">
                     <h3>Contacto</h3>
-
                     <ul>
                         <li><a href="#">Email</a></li>
                         <li><a href="#">Teléfono</a></li>
@@ -153,11 +187,10 @@
 
     </footer>
 
-    
+
     <script src="js/supabaseClient.js"></script>
     <script src="js/utils.js"></script>
-    <script src="js/index.js"></script>
-
+    <script src="js/mainEmpresa.js"></script>
 </body>
 
 </html>

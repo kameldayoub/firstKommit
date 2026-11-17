@@ -33,7 +33,11 @@ document.getElementById("btnLogin").addEventListener("click", async (e) => {
 
       console.log("Usuario logueado:", localStorage.getItem("usuarioLogueado"));
 
-      window.location.href = "main.html";
+      if (usuario.tipo === "empresa") {
+        window.location.href = "mainEmpresa.html";
+      } else {
+        window.location.href = "main.html";
+      }
     } else {
       alert("Usuario o contraseña incorrectos.");
     }

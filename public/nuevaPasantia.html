@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/default.css">
+    <link rel="stylesheet" href="styles/pasantia.css">
+    <link rel="stylesheet" href="styles/nuevaPasantia.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>FirstKommit - Nueva pasantía</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+
+            <div class="header-logo">
+                <a href="mainEmpresa.html"><img class="icono" src="img/logoFirstKommit.png" alt="firstKommit"></a>
+            </div>
+            <div class="header-info">
+                <div class="header-mensaje"><a href="#"><img class="icono" src="img/iconoMensaje.png" alt="Mensajes"></a></div>
+                <div class="header-buzon"><a href="#"><img class="icono" src="img/iconoBuzon.png" alt="Buzon"></a></div>
+                <div>
+                    <a class="icono" href="perfilEmpresa.html">
+                        <img id="foto_perfil" class="header-perfil" src="img/placeholderPerfil.png" alt="Perfil">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pagina">
+
+        <h2 class="pagina-titulo">Nueva pasantía</h2>
+
+        <div class="hoja">
+            <form id="formPasantia" class="pasantia" novalidate>
+
+                <h3 class="seccion-titulo pasante">Publicar búsqueda de pasante</h3>
+
+                <!-- ========== DESCRIPCIÓN ========== -->
+                <section class="seccion">
+                    <h3 class="seccion-titulo">Descripción</h3>
+                    <div class="campo">
+                        <label for="descripcion">Descripción breve</label>
+                        <textarea id="descripcion" name="descripcion" rows="4" maxlength="500" required
+                            placeholder="Resumen que verá el estudiante en el listado de pasantías"></textarea>
+                        <small class="campo-ayuda"><span id="contadorDescripcion">0</span>/500</small>
+                    </div>
+                </section>
+
+                <!-- ========== REQUISITOS ========== -->
+                <section class="seccion requisito">
+                    <h3 class="seccion-titulo">Requisitos</h3>
+                    <ul id="listaRequisitos" class="lista lista-editable"></ul>
+                    <button type="button" id="btnAgregarRequisito" class="btn-agregar">+ Agregar requisito</button>
+                </section>
+
+                <!-- ========== TAREAS ========== -->
+                <section class="seccion tarea">
+                    <h3 class="seccion-titulo">Tareas a realizar</h3>
+                    <div id="listaTareas"></div>
+                    <button type="button" id="btnAgregarTarea" class="btn-agregar">+ Agregar grupo de tareas</button>
+                </section>
+
+                <!-- ========== INFORMACIÓN ========== -->
+                <section class="seccion info-pasan">
+                    <h3 class="seccion-titulo">Información de la pasantía</h3>
+
+                    <div class="campos-grilla">
+                        <div class="campo">
+                            <label for="duracion">Duración (en meses)</label>
+                            <input type="number" id="duracion" name="duracion" min="1" max="36" placeholder="Ej: 6" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="horasDiarias">Horas diarias</label>
+                            <input type="number" id="horasDiarias" name="horasDiarias" min="1" max="12" placeholder="Ej: 4" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="monto">Asignación estímulo ($)</label>
+                            <input type="number" id="monto" name="monto" min="0" step="1" placeholder="Ej: 300000" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="fechaFin">Fecha de finalización</label>
+                            <input type="date" id="fechaFin" name="fechaFin" required>
+                        </div>
+                    </div>
+
+                    <p class="campo-ayuda">El lugar de trabajo y el mapa se toman de la dirección de tu empresa.</p>
+                </section>
+
+                <p id="mensajeForm" class="mensaje-form" role="alert" hidden></p>
+
+                <div class="pasantia-pie pie-form">
+                    <a class="boton-cancelar" href="mainEmpresa.html">Cancelar</a>
+                    <button type="submit" class="boton-cv" id="btnPublicar">Publicar</button>
+                </div>
+
+            </form>
+        </div>
+
+    </main>
+
+    <footer>
+
+        <!-- Barra superior del footer -->
+        <section class="footer-superior">
+
+            <!-- Logo y copyright -->
+            <div class="footer-logo">
+                <a href="mainEmpresa.html">
+                    <span>firstKommit</span>
+                </a>
+
+                <p>&copy; 2026 FirstKommit. Todos los derechos reservados.</p>
+            </div>
+
+
+            <!-- Redes sociales -->
+            <nav class="footer-redes" aria-label="Redes sociales">
+
+                <a href="#" aria-label="Instagram">
+                    <img src="img/instagram.png" alt="Instagram">
+                </a>
+
+                <a href="#" aria-label="Facebook">
+                    <img src="img/facebook.png" alt="Facebook">
+                </a>
+
+            </nav>
+
+        </section>
+
+
+        <!-- Enlaces del footer -->
+        <section class="footer-enlaces">
+
+            <nav aria-label="Enlaces del pie de página">
+
+                <div class="footer-columna">
+                    <h3>FirstKommit</h3>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-columna">
+                    <h3>Estudiantes</h3>
+                    <ul>
+                        <li><a href="#">Pasantías</a></li>
+                        <li><a href="#">Ofertas</a></li>
+                        <li><a href="#">Postulaciones</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-columna">
+                    <h3>Empresas</h3>
+                    <ul>
+                        <li><a href="nuevaPasantia.html">Publicar oferta</a></li>
+                        <li><a href="#">Buscar estudiantes</a></li>
+                        <li><a href="#">Información</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-columna">
+                    <h3>Recursos</h3>
+                    <ul>
+                        <li><a href="#">Ayuda</a></li>
+                        <li><a href="#">Preguntas frecuentes</a></li>
+                        <li><a href="#">Guía</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-columna">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-columna">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><a href="#">Email</a></li>
+                        <li><a href="#">Teléfono</a></li>
+                        <li><a href="#">Ubicación</a></li>
+                    </ul>
+                </div>
+
+            </nav>
+
+        </section>
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabaseClient.js"></script>
+    
+    <script src="js/utils.js"></script>
+    <script src="js/nuevaPasantia.js"></script>
+</body>
+
+</html>

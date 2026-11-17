@@ -1,0 +1,63 @@
+
+.empresa-logo {
+  object-fit: contain;
+  background-color: var(--blanco);
+}
+
+/* Columna de acciones: botones apilados */
+.perfil-doc {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Símbolos (+ y ✎) dentro del cuadro oscuro de cada botón */
+.empresa-mas {
+  font-size: 150%;
+  color: var(--blanco);
+}
+
+.perfil-doc-file:hover .download-container {
+  background-color: var(--bordo);
+}
+
+.download-container {
+  transition: background-color 0.3s ease;
+}
+
+/* Las pasantías publicadas muestran el nombre con espacio a la derecha */
+.perfil-pasan-link p {
+  margin: 0;
+  padding: 0 15px;
+  color: var(--blanco);
+}
+
+/* Contacto: los textos largos (emails) no deben desbordar */
+.materia {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+  .background {
+    margin: 0 4%;
+    padding: 25px;
+  }
+
+  .perfil-superior {
+    grid-template-columns: 1fr;
+  }
+
+  .perfil-superior > section:nth-child(even) {
+    border-radius: 15px;
+  }
+
+  .perfil-pasan-link {
+    width: 100%;
+  }
+
+  .academico-cabecera,
+  .academico-resumen {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
