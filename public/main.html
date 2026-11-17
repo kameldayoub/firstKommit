@@ -34,25 +34,12 @@
             <button class="carrusel-btn btn-izq" aria-label="Anterior">&#10094;</button>
             <button class="carrusel-btn btn-der" aria-label="Siguiente">&#10095;</button>
 
-            <article class="carrusel-side">
-                <img src="" alt="Carrusel 1">
-            </article>
-            <article class="carrusel-center">
-                <img src="" alt="Carrusel 2">
-            </article>
-            <article class="carrusel-side">
-                <img src="" alt="Carrusel 3">
-            </article>
-            <article class="carrusel-hidde">
-                <img src="" alt="Carrusel 4">
-            </article>
+            <article class="carrusel-side carrusel-izq"><img alt=""></article>
+            <article class="carrusel-center"><img alt=""></article>
+            <article class="carrusel-side carrusel-der"><img alt=""></article>
+            <article class="carrusel-hidde"><img alt=""></article>
 
-            <!-- Puntos indicadores abajo -->
-            <div class="carrusel-puntos">
-                <span class="punto"></span>
-                <span class="punto activo"></span>
-                <span class="punto"></span>
-            </div>
+            <div class="carrusel-puntos"></div>
         </div>
 
 
@@ -174,11 +161,16 @@
         </section>
 
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/supabaseClient.js"></script>
+
+
+
     <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
     <script src="js/pruebaCargaPasantia.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+    <script src="js/carrusel.js" defer></script>
+
 </body>
 
 </html>
