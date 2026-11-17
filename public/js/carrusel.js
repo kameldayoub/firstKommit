@@ -22,7 +22,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const BUCKET = 'carrusel';         // nombre del bucket en Storage (tiene que ser público)
 const CARPETA = '';                // subcarpeta dentro del bucket ('' si las imágenes están sueltas)
 
-const SEGUNDOS = 5;                // cada cuánto cambia solo
+const SEGUNDOS = 10;                // cada cuánto cambia solo
 
 
 /* ---------- Elementos del HTML ---------- */
