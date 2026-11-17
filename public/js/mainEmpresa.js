@@ -1,8 +1,10 @@
 // =========================================================
 // mainEmpresa.js  ·  Panel principal de la empresa
+// Usa la API: /api/empresas/:id y /api/pasantias?empresa=..&cantidad=..&from=..
 // =========================================================
 
 const contenedor = document.getElementById('pasan-container');
+const POR_PAGINA = 6;
 
 function crearTarjetaPasantia(pasantia) {
     const activa = pasantiaActiva(pasantia);
@@ -63,23 +65,24 @@ async function cargarPanelEmpresa() {
         ponerFotoHeader(empresa.usuario.foto_perfil);
         document.getElementById('empresaNombre').textContent = empresa.nom_empresa;
 
-        // 2. Sus pasantías
-        const pasantias = await obtenerPasantiasDeEmpresa(usuarioActivo.id);
-
-        // 3. Contadores
-        const activas = pasantias.filter(pasantiaActiva).length;
+        // 2. Contadores: se le pide a la API el "total" de cada estado
+        const [activas, finalizadas] = await Promise.all([
+            contarPasantias(usuarioActivo.id, 'activas'),
+            contarPasantias(usuarioActivo.id, 'finalizadas')
+        ]);
         document.getElementById('statActivas').textContent = activas;
-        document.getElementById('statFinalizadas').textContent = pasantias.length - activas;
+        document.getElementById('statFinalizadas').textContent = finalizadas;
 
-        // 4. Tarjetas
-        contenedor.innerHTML = '';
-
-        if (pasantias.length === 0) {
-            contenedor.innerHTML = '<p class="empresa-vacio">Todavía no publicaste ninguna pasantía.</p>';
-            return;
-        }
-
-        pasantias.forEach(p => contenedor.appendChild(crearTarjetaPasantia(p)));
+        // 3. Tarjetas paginadas con botón "Ver más"
+        await cargarPaginado({
+            contenedor,
+            cantidad: POR_PAGINA,
+            textoVacio: 'Todavía no publicaste ninguna pasantía.',
+            pedir: (cantidad, from) => obtenerPaginaPasantias({
+                empresa: usuarioActivo.id, estado: 'todas', cantidad, from
+            }),
+            crear: crearTarjetaPasantia
+        });
 
     } catch (err) {
         console.error('Error al cargar el panel de empresa:', err.message);

@@ -1,26 +1,24 @@
-async function cargarFotoPerfil(nom_usuario) {
-  try {
-    const { data: usuario, error } = await _supabase
-      .from('usuario')
-      .select('foto_perfil')
-      .eq('nom_usuario', nom_usuario)
-      .single();
+// =========================================================
+// perfil.js  ·  Foto de perfil del estudiante
+// Usa GET /api/usuarios/:id
+// =========================================================
 
-    if (error) {
-      console.error('Error al traer datos:', error.message);
+async function cargarFotoPerfil(idUsuario) {
+  try {
+    const respuesta = await fetch(`/api/usuarios/${encodeURIComponent(idUsuario)}`);
+    const cuerpo = await respuesta.json();
+
+    if (!respuesta.ok) {
+      console.error('Error al traer datos:', cuerpo.mensaje);
       return;
     }
 
-    if (usuario && usuario.foto_perfil) {
-      console.log('entro :',usuario);
-      const imagenesPerfil = document.querySelectorAll('#foto_perfil');
+    const usuario = cuerpo.datos;
 
-      imagenesPerfil.forEach(imgElemento => {
-        imgElemento.src = usuario.foto_perfil;
+    if (usuario.foto_perfil) {
+      document.querySelectorAll('#foto_perfil').forEach(img => {
+        img.src = usuario.foto_perfil;
       });
-    }else{
-      console.log('problema:',usuario);
-
     }
 
   } catch (err) {
@@ -29,19 +27,12 @@ async function cargarFotoPerfil(nom_usuario) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Leemos el usuario guardado en localStorage (viene como texto JSON)
   const usuarioActivoRaw = localStorage.getItem('usuarioLogueado');
 
   if (usuarioActivoRaw) {
-    // 2. Lo convertimos de texto a objeto JS
     const usuarioActivo = JSON.parse(usuarioActivoRaw);
-
-    console.log('Usuario activo:', usuarioActivo);
-    console.log('Usuario nobre:', usuarioActivo.nombre);
-    // 3. Le pasamos solo el nombre de usuario a la función
-    cargarFotoPerfil(usuarioActivo.nombre);
+    cargarFotoPerfil(usuarioActivo.id);
   } else {
-    // Si no hay usuario guardado, lo devolvemos al login
     window.location.href = 'index.html';
   }
 });

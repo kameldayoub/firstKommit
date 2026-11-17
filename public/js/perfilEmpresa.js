@@ -2,6 +2,8 @@
 // perfilEmpresa.js  ·  Perfil de la empresa logueada
 // =========================================================
 
+const POR_PAGINA = 6;
+
 function crearLinkPasantia(pasantia, foto) {
     const activa = pasantiaActiva(pasantia);
 
@@ -39,21 +41,24 @@ async function cargarPerfilEmpresa() {
         document.getElementById('empresaDireccion').textContent =
             empresa.direccion_empresa ? `Dirección: ${empresa.direccion_empresa}` : '';
 
-        // 2. Pasantías publicadas
-        const pasantias = await obtenerPasantiasDeEmpresa(usuarioActivo.id);
-
-        const activas = pasantias.filter(pasantiaActiva).length;
+        // 2. Contadores (el "total" que devuelve la API)
+        const [activas, finalizadas] = await Promise.all([
+            contarPasantias(usuarioActivo.id, 'activas'),
+            contarPasantias(usuarioActivo.id, 'finalizadas')
+        ]);
         document.getElementById('datoActivas').textContent = activas;
-        document.getElementById('datoFinalizadas').textContent = pasantias.length - activas;
+        document.getElementById('datoFinalizadas').textContent = finalizadas;
 
-        contenedor.innerHTML = '';
-
-        if (pasantias.length === 0) {
-            contenedor.innerHTML = '<p>Todavía no publicaste pasantías.</p>';
-            return;
-        }
-
-        pasantias.forEach(p => contenedor.appendChild(crearLinkPasantia(p, foto)));
+        // 3. Pasantías publicadas, paginadas
+        await cargarPaginado({
+            contenedor,
+            cantidad: POR_PAGINA,
+            textoVacio: 'Todavía no publicaste pasantías.',
+            pedir: (cantidad, from) => obtenerPaginaPasantias({
+                empresa: usuarioActivo.id, estado: 'todas', cantidad, from
+            }),
+            crear: (p) => crearLinkPasantia(p, foto)
+        });
 
     } catch (err) {
         console.error('Error al cargar el perfil de empresa:', err.message);

@@ -1,96 +1,90 @@
-const boton = document.getElementById('btnCrear');
+// =========================================================
+// pruebaCargaPasantia.js  ·  Listado de pasantías para el estudiante
+// Usa el endpoint paginado: GET /api/pasantias?cantidad=5&from=0
+// =========================================================
+
 const contenedor = document.getElementById('pasan-container');
 
+const POR_PAGINA = 5;   // cuántas pasantías se piden cada vez
+let desde = 0;          // cuántas ya se mostraron (es el "from" de la próxima página)
 
+// Botón "Ver más", debajo del listado
+const botonVerMas = document.createElement('button');
+botonVerMas.type = 'button';
+botonVerMas.textContent = 'Ver más';
+botonVerMas.style.cssText = 'display:none;margin:20px auto;padding:10px 28px;cursor:pointer;';
+contenedor.insertAdjacentElement('afterend', botonVerMas);
 
-async function cargarPasantias() {
+function crearTarjeta(item) {
+    const linkPasan = document.createElement('a');
+    linkPasan.href = `pasantia.html?id=${item.id_pasantia}`;
+    linkPasan.classList.add('pasan-view');
 
-    contenedor.innerHTML = '<p>Cargando pasantías...</p>';
+    const divPasan = document.createElement('div');
+    divPasan.classList.add('pasan-view-info');
+
+    const imgPasan = document.createElement('img');
+    imgPasan.src = item.empresa.usuario.foto_perfil || 'img/placeholderPerfil.png';
+    imgPasan.alt = item.empresa.nom_empresa;
+
+    const articlePasan = document.createElement('article');
+
+    const nomEmpresa = document.createElement('h2');
+    nomEmpresa.textContent = item.empresa.nom_empresa;
+
+    const contPasan = document.createElement('p');
+    contPasan.textContent = item.descripcion_breve;
+
+    const pMasInfoPasan = document.createElement('p');
+    pMasInfoPasan.classList.add('pasan-view-mas-info');
+    pMasInfoPasan.textContent = 'MAS INFO';
+
+    articlePasan.appendChild(nomEmpresa);
+    articlePasan.appendChild(contPasan);
+    divPasan.appendChild(imgPasan);
+    divPasan.appendChild(articlePasan);
+    linkPasan.appendChild(divPasan);
+    linkPasan.appendChild(pMasInfoPasan);
+
+    return linkPasan;
+}
+
+// Pide UNA página a la API y la agrega al final del listado
+async function cargarPagina() {
+    botonVerMas.disabled = true;
 
     try {
-        const { data: pasantias, error } = await _supabase
-            .from('pasantia')
-            .select(`id_pasantia, 
-                descripcion_breve, 
-                empresa!inner ( nom_empresa,usuario!inner ( foto_perfil))`)
-            .gt('fecha_fin', new Date().toISOString()); // Mayor que la fecha actual
+        const respuesta = await fetch(`/api/pasantias?cantidad=${POR_PAGINA}&from=${desde}&estado=activas`);
+        const cuerpo = await respuesta.json();
 
+        if (!respuesta.ok) throw new Error(cuerpo.mensaje || 'Error al pedir las pasantías');
 
-        /*
-        COMO SE VE EL ARRAY DEVUELTO
-        [
-            {
-                "id_pasantia": "12345-abcde",
-                "descripcion_breve": "En esta pasantía mantendrás los planes...",
-                "empresa": {
-                "nom_empresa": "BPN",
-                "usuario": {
-                    "imgPerfil_url": "imagen/logoBPN.png"
-                }
-                }
-            }
-            ]
-        
-        */
+        // La primera vez, sacamos el cartel "Cargando..."
+        if (desde === 0) contenedor.innerHTML = '';
 
-
-        if (error) throw error;
-
-
-
-
-        // Limpiar contenedor antes de renderizar
-        contenedor.innerHTML = '';
-
-        if (pasantias.length === 0) {
+        if (desde === 0 && cuerpo.datos.length === 0) {
             contenedor.innerHTML = '<p>No hay pasantías activas.</p>';
             return;
         }
 
-        // 3. Iterar y construir el DOM
-        pasantias.forEach(item => {
-            const linkPasan = document.createElement('a');
-            linkPasan.href = `pasantia.html?id=${item.id_pasantia}`; //servira mas tarde para cargar los contenidos de la pasantia en el html de la misma
-            linkPasan.classList.add('pasan-view');
+        cuerpo.datos.forEach(item => contenedor.appendChild(crearTarjeta(item)));
+        desde += cuerpo.datos.length;
 
-            const divPasan = document.createElement('div');
-            divPasan.classList.add('pasan-view-info');
-
-            const imgPasan = document.createElement('img');
-            // CORREGIDO: Usar '=' en lugar de '()' y la barra '/' para la ruta
-            imgPasan.src = item.empresa.usuario.foto_perfil;
-            imgPasan.alt = item.empresa.nom_empresa;
-
-            const articlePasan = document.createElement('article');
-
-            nomEmpresa = document.createElement('h2');
-            nomEmpresa.textContent = item.empresa.nom_empresa;
-
-            const contPasan = document.createElement('p');
-            contPasan.textContent = item.descripcion_breve;
-
-            const pMasInfoPasan = document.createElement('p');
-            pMasInfoPasan.classList.add('pasan-view-mas-info');
-            pMasInfoPasan.textContent = 'MAS INFO';
-
-            // Armado de la estructura interna (de adentro hacia afuera)
-            articlePasan.appendChild(nomEmpresa);
-            articlePasan.appendChild(contPasan);
-
-            divPasan.appendChild(imgPasan);
-            divPasan.appendChild(articlePasan);
-
-            linkPasan.appendChild(divPasan);
-            linkPasan.appendChild(pMasInfoPasan);
-
-            // Insertar la tarjeta completa en el contenedor principal
-            contenedor.appendChild(linkPasan);
-        });
+        // Si todavía quedan pasantías sin mostrar, aparece el botón
+        botonVerMas.style.display = desde < cuerpo.total ? 'block' : 'none';
 
     } catch (err) {
         console.error('Error al cargar datos:', err.message);
-        contenedor.innerHTML = '<p>Error al cargar las pasantías.</p>';
+        if (desde === 0) contenedor.innerHTML = '<p>Error al cargar las pasantías.</p>';
+        else alert(err.message);
+    } finally {
+        botonVerMas.disabled = false;
     }
 }
 
-document.addEventListener('DOMContentLoaded', cargarPasantias);
+botonVerMas.addEventListener('click', cargarPagina);
+
+document.addEventListener('DOMContentLoaded', () => {
+    contenedor.innerHTML = '<p>Cargando pasantías...</p>';
+    cargarPagina();
+});

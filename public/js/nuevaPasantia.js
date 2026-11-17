@@ -2,14 +2,6 @@
 // nuevaPasantia.js  ·  Formulario para publicar una pasantía
 // =========================================================
 
-// ---- Claves según el esquema de Supabase ----
-// pasantia.id_usuario es la FK a empresa (empresa.id_usuario es su PK).
-// requisito, tarea e inciso usan claves compuestas:
-//   requisito (id_pasantia, nom_requisito)
-//   tarea     (id_pasantia, nom_tarea)
-//   inciso    (id_pasantia, nom_tarea, nom_inciso)
-const COL_ID_EMPRESA = 'id_usuario';
-
 const usuarioActivo = exigirEmpresa();
 
 const form = document.getElementById('formPasantia');
@@ -193,12 +185,9 @@ function validar(datos) {
 }
 
 
-// ---------- Envío a Supabase ----------
-
-async function insertar(tabla, filas) {
-    const { error } = await _supabase.from(tabla).insert(filas);
-    if (error) throw error;
-}
+// ---------- Envío a la API ----------
+// Un solo POST /api/pasantias: el servidor crea la pasantía, los requisitos,
+// las tareas y los incisos, y si algo falla deshace todo.
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -208,63 +197,30 @@ form.addEventListener('submit', async (e) => {
     if (!validar(datos)) return;
 
     btnPublicar.disabled = true;
-    let idPasantia = null;
 
     try {
-        const empresa = await obtenerEmpresaActiva(usuarioActivo.id);
-
-        // 1. Pasantía
-        const { data: nueva, error: errPasantia } = await _supabase
-            .from('pasantia')
-            .insert({
-                [COL_ID_EMPRESA]: empresa[COL_ID_EMPRESA],
+        await llamarApi('/api/pasantias', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                id_usuario: usuarioActivo.id,
                 descripcion_breve: datos.descripcion_breve,
                 duracion: datos.duracion,
-                monto: datos.monto,
                 cant_hora: datos.cant_hora,
-                fecha_fin: datos.fecha_fin
+                monto: datos.monto,
+                fecha_fin: datos.fecha_fin,
+                requisitos: datos.requisitos,
+                tareas: datos.tareas.map(t => ({ nom_tarea: t.titulo, incisos: t.items }))
             })
-            .select('id_pasantia')
-            .single();
-
-        if (errPasantia) throw errPasantia;
-        idPasantia = nueva.id_pasantia;
-
-        // 2. Requisitos
-        await insertar('requisito', datos.requisitos.map(nombre => ({
-            id_pasantia: idPasantia,
-            nom_requisito: nombre
-        })));
-
-        // 3. Tareas y sus incisos
-        for (const tarea of datos.tareas) {
-            const { error: errTarea } = await _supabase
-                .from('tarea')
-                .insert({ id_pasantia: idPasantia, nom_tarea: tarea.titulo });
-
-            if (errTarea) throw errTarea;
-
-            if (tarea.items.length > 0) {
-                await insertar('inciso', tarea.items.map(nombre => ({
-                    id_pasantia: idPasantia,
-                    nom_tarea: tarea.titulo,
-                    nom_inciso: nombre
-                })));
-            }
-        }
+        });
 
         mostrarMensaje('¡Pasantía publicada! Redirigiendo…', true);
         setTimeout(() => { window.location.href = 'mainEmpresa.html'; }, 1500);
 
     } catch (err) {
         console.error('Error al publicar:', err.message);
-
-        // Si falló a la mitad, intentamos no dejar una pasantía incompleta
-        if (idPasantia) {
-            await _supabase.from('pasantia').delete().eq('id_pasantia', idPasantia);
-        }
-
-        mostrarMensaje('No se pudo publicar la pasantía. Probá de nuevo.');
+        // err.message trae el mensaje claro que devolvió la API (por ejemplo, qué campo está mal)
+        mostrarMensaje(err.message);
         btnPublicar.disabled = false;
     }
 });

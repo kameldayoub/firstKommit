@@ -1,3 +1,8 @@
+// =========================================================
+// utils.js  ·  Funciones compartidas por las páginas de empresa
+// Ya no usa Supabase: todo pasa por la API (/api/...).
+// =========================================================
+
 function obtenerUsuarioActivo() {
   const raw = localStorage.getItem('usuarioLogueado');
   if (!raw) {
@@ -12,17 +17,10 @@ function cerrarSesion() {
   window.location.href = 'index.html';
 }
 
-
-// =========================================================
-// HELPERS PARA LAS PÁGINAS DE EMPRESA
-// =========================================================
-
-// Valor que guarda usuario.tipo para las empresas (lo devuelve fn_login).
-// Si en tu base se llama distinto, cambialo acá y listo.
+// Valor que devuelve la API en usuario.tipo para las empresas
 const TIPO_EMPRESA = 'empresa';
 
 // Devuelve el usuario logueado solo si es una empresa.
-// Si no hay sesión va al login; si es estudiante lo manda a main.html.
 function exigirEmpresa() {
   const usuario = obtenerUsuarioActivo();
   if (!usuario) return null;
@@ -34,38 +32,109 @@ function exigirEmpresa() {
   return usuario;
 }
 
-// Trae la fila de empresa que pertenece al usuario logueado,
-// junto con su usuario (foto_perfil).
+
+// =========================================================
+// LLAMADAS A LA API
+// =========================================================
+
+// Hace el fetch y convierte los errores de la API en un Error de JS.
+//   * Si la API responde 400/404/500, se lanza un Error con el mensaje
+//     claro que mandó el servidor (error.message) y su código (error.status).
+//   * Si el servidor está apagado, se lanza un Error propio.
+async function llamarApi(url, opciones) {
+  let respuesta;
+  try {
+    respuesta = await fetch(url, opciones);
+  } catch (e) {
+    throw new Error('No se pudo conectar con el servidor');
+  }
+
+  let cuerpo = null;
+  try { cuerpo = await respuesta.json(); } catch (e) { /* sin cuerpo JSON */ }
+
+  if (!respuesta.ok) {
+    const detalle = cuerpo && cuerpo.errores && cuerpo.errores.length
+      ? ': ' + cuerpo.errores.join(' · ')
+      : '';
+    const error = new Error(((cuerpo && cuerpo.mensaje) || `Error ${respuesta.status}`) + detalle);
+    error.status = respuesta.status;
+    throw error;
+  }
+  return cuerpo;
+}
+
+// GET /api/empresas/:id  (el id de la empresa es el id del usuario)
 async function obtenerEmpresaActiva(idUsuario) {
-  const { data, error } = await _supabase
-    .from('empresa')
-    .select('*, usuario!inner(id_usuario, nom_usuario, foto_perfil)')
-    .eq('usuario.id_usuario', idUsuario)
-    .single();
-
-  if (error) throw error;
-  return data;
+  const respuesta = await llamarApi(`/api/empresas/${idUsuario}`);
+  return respuesta.datos; // { nom_empresa, direccion_empresa, usuario: { foto_perfil }, ... }
 }
 
-// Todas las pasantías de la empresa del usuario (activas y finalizadas)
-async function obtenerPasantiasDeEmpresa(idUsuario) {
-  const { data, error } = await _supabase
-    .from('pasantia')
-    .select(`
-      id_pasantia,
-      descripcion_breve,
-      fecha_fin,
-      empresa!inner (
-        nom_empresa,
-        usuario!inner ( id_usuario, foto_perfil )
-      )
-    `)
-    .eq('empresa.usuario.id_usuario', idUsuario)
-    .order('fecha_fin', { ascending: false });
-
-  if (error) throw error;
-  return data;
+// GET /api/pasantias?cantidad=..&from=..&estado=..&empresa=..
+// Devuelve { datos, total }
+async function obtenerPaginaPasantias({ empresa, estado = 'todas', cantidad, from }) {
+  const params = new URLSearchParams({ cantidad, from, estado });
+  if (empresa) params.set('empresa', empresa);
+  return llamarApi(`/api/pasantias?${params}`);
 }
+
+// Cuántas pasantías hay en cierto estado: se pide 1 sola y se lee "total"
+async function contarPasantias(empresa, estado) {
+  const respuesta = await obtenerPaginaPasantias({ empresa, estado, cantidad: 1, from: 0 });
+  return respuesta.total || 0;
+}
+
+
+// =========================================================
+// PAGINACIÓN CON BOTÓN "VER MÁS"
+// =========================================================
+// Pide la primera página, la dibuja y, si quedan más, muestra un botón
+// que pide la siguiente (from aumenta en la cantidad ya mostrada).
+//   contenedor : elemento donde se agregan las tarjetas
+//   cantidad   : cuántas se piden por página
+//   pedir      : (cantidad, from) => Promise<{ datos, total }>
+//   crear      : (item) => elemento DOM
+async function cargarPaginado({ contenedor, cantidad, pedir, crear, textoVacio }) {
+  let from = 0;
+  contenedor.innerHTML = '';
+
+  const boton = document.createElement('button');
+  boton.type = 'button';
+  boton.className = 'btn-ver-mas';
+  boton.textContent = 'Ver más';
+  boton.style.cssText = 'display:none;margin:20px auto;padding:10px 28px;cursor:pointer;';
+  contenedor.insertAdjacentElement('afterend', boton);
+
+  async function cargarPagina() {
+    boton.disabled = true;
+    try {
+      const { datos, total } = await pedir(cantidad, from);
+
+      if (from === 0 && datos.length === 0) {
+        contenedor.innerHTML = `<p class="empresa-vacio">${textoVacio}</p>`;
+        return;
+      }
+
+      datos.forEach(item => contenedor.appendChild(crear(item)));
+      from += datos.length;
+      boton.style.display = from < (total || 0) ? 'block' : 'none';
+
+    } catch (err) {
+      console.error('Error al cargar página:', err.message);
+      if (from === 0) contenedor.innerHTML = '<p class="empresa-vacio">Error al cargar los datos.</p>';
+      else alert(err.message);
+    } finally {
+      boton.disabled = false;
+    }
+  }
+
+  boton.addEventListener('click', cargarPagina);
+  await cargarPagina();
+}
+
+
+// =========================================================
+// HELPERS DE FORMATO
+// =========================================================
 
 // Misma regla que usa la vista del estudiante: activa = fecha_fin futura
 function pasantiaActiva(pasantia) {

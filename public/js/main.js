@@ -1,28 +1,20 @@
 
-async function cargarFotoPerfil(nom_usuario) {
+// Foto de perfil: GET /api/usuarios/:id
+async function cargarFotoPerfil(idUsuario) {
   try {
-    const { data: usuario, error } = await _supabase
-      .from('usuario')
-      .select('foto_perfil')
-      .eq('nom_usuario', nom_usuario)
-      .single();
+    const respuesta = await fetch(`/api/usuarios/${encodeURIComponent(idUsuario)}`);
+    const cuerpo = await respuesta.json();
 
-    if (error) {
-      console.error('Error al traer datos:', error.message);
+    if (!respuesta.ok) {
+      console.error('Error al traer datos:', cuerpo.mensaje);
       return;
     }
 
-    if (usuario && usuario.foto_perfil) {
-      const imagenesPerfil = document.querySelectorAll('#foto_perfil');
-
-      imagenesPerfil.forEach(imgElemento => {
-        imgElemento.src = usuario.foto_perfil;
+    if (cuerpo.datos.foto_perfil) {
+      document.querySelectorAll('#foto_perfil').forEach(img => {
+        img.src = cuerpo.datos.foto_perfil;
       });
-    }else{
-      console.log('problema:',usuario);
-
     }
-
   } catch (err) {
     console.error('Error inesperado:', err);
   }
@@ -79,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Lo convertimos de texto a objeto JS
     const usuarioActivo = JSON.parse(usuarioActivoRaw);
 
-    // 3. Le pasamos solo el nombre de usuario a la función
-    cargarFotoPerfil(usuarioActivo.nombre);
+    // 3. Le pasamos el id del usuario a la función
+    cargarFotoPerfil(usuarioActivo.id);
   } else {
     // Si no hay usuario guardado, lo devolvemos al login
     window.location.href = 'index.html';

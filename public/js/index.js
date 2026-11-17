@@ -1,3 +1,6 @@
+// =========================================================
+// index.js  ·  Login. Ahora usa POST /api/usuarios/login
+// =========================================================
 
 document.getElementById("btnLogin").addEventListener("click", async (e) => {
   e.preventDefault();
@@ -11,38 +14,32 @@ document.getElementById("btnLogin").addEventListener("click", async (e) => {
   }
 
   try {
-    const { data, error } = await _supabase.rpc("fn_login", {
-      p_usuario:  usuarioIngresado,
-      p_password: passwordIngresada,
+    const respuesta = await fetch("/api/usuarios/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ usuario: usuarioIngresado, password: passwordIngresada }),
     });
 
-    if (error) {
-      console.error("Error en la consulta:", error.message);
-      alert("Error en la consulta: " + error.message);
+    const cuerpo = await respuesta.json();
+
+    if (!respuesta.ok) {
+      // 401: credenciales incorrectas. 400: faltan datos. Otros: error del servidor.
+      alert(cuerpo.mensaje || "No se pudo iniciar sesión.");
       return;
     }
 
-    if (data && data.length > 0) {
-      const usuario = data[0];
+    const usuario = cuerpo.datos; // { id_usuario, nom_usuario, tipo }
 
-      localStorage.setItem("usuarioLogueado", JSON.stringify({
-        id:     usuario.id_usuario,
-        nombre: usuario.nom_usuario,
-        tipo:   usuario.tipo,       
-      }));
+    localStorage.setItem("usuarioLogueado", JSON.stringify({
+      id:     usuario.id_usuario,
+      nombre: usuario.nom_usuario,
+      tipo:   usuario.tipo,
+    }));
 
-      console.log("Usuario logueado:", localStorage.getItem("usuarioLogueado"));
-
-      if (usuario.tipo === "empresa") {
-        window.location.href = "mainEmpresa.html";
-      } else {
-        window.location.href = "main.html";
-      }
-    } else {
-      alert("Usuario o contraseña incorrectos.");
-    }
+    window.location.href = usuario.tipo === "empresa" ? "mainEmpresa.html" : "main.html";
 
   } catch (err) {
     console.error("Error inesperado:", err);
+    alert("No se pudo conectar con el servidor.");
   }
 });
